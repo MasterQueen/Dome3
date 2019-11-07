@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>幼儿园财务管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <!-- Le styles -->
+    <link href="http://fonts.googleapis.com/css?family=Oxygen|Marck+Script" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/css/bootstrap.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/css/font-awesome.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/css/admin.css}" rel="stylesheet" type="text/css">
+    
+    <!--&lt;!&ndash; Le HTML5 shim, for IE6-8 support of HTML5 elements &ndash;&gt;-->
+    <!--&lt;!&ndash;[if lt IE 9]>-->
+	    <!--<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>-->
+    <!--<![endif]&ndash;&gt;-->
+
+</head>    
+<body>
+
+<div class="container">
+		
+	<div class="row">
+
+		<div class="span2">
+
+			<div class="main-left-col">
+
+				<h1><i class="icon-shopping-cart icon-large"></i> Finance</h1>
+
+				<ul class="side-nav">
+
+					<!-- 利用KinderController里的goto***()方法跳转 -->
+					<li><a th:href="@{/kinderindex}"><i class="icon-home"></i> 主页 </a></li>
+					<li><a th:href="@{/gotoaddstudent}"><i class="icon-group"></i> 添加学生 </a></li>
+					<li><a th:href="@{/gotokinderupdate}"><i class="icon-cogs"></i> 修改资料 </a></li>
+					<li><a th:href="@{/gotokinderhelp}"><i class="icon-info-sign"></i> 帮助 </a></li>
+				</ul>
+
+			</div> <!-- end main-left-col -->
+
+		</div> <!-- end span2 -->
+	
+	<div class="span10">
+		
+	<div class="secondary-masthead">
+	
+		<ul class="nav nav-pills pull-right">
+			<li>
+				<a href="#"><i class="icon-globe"></i> View Website</a>
+			</li>
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user"></i> <font th:text="${session.username}"></font> <b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="/kinder_count">我的账户</a></li>
+					<li><a th:href="@{/gotokinderupdate}">修改资料</a></li>
+					<li class="divider"></li>
+					<li><a href="/login">退出登录</a></li>
+				</ul>
+			</li>
+		</ul>
+
+		<ul class="breadcrumb">
+			<li>
+				<a href="#">园长</a> <span class="divider">/</span>
+			</li>
+			<li class="active">幼儿园财务管理系统</li>
+		</ul>
+		
+	</div>
+	
+	<div class="main-area dashboard">
+			
+			<div class="row">
+			
+				<div class="span2 profileicon">
+					
+					<i class="icon icon-user"></i>
+					<!--<p align="left"><strong>学生ID：</strong> <font th:text="${student.stuId}"></font></p>-->
+					<p><strong>学生姓名：</strong> <font th:text="${student.stuName}"></font></p>
+					<!--<p align="left"><strong>联系方式：</strong> <font th:text="${student.stuPhone}"></font></p>-->
+					
+				</div>
+				
+				<div class="span8">
+					
+					<div class="row">
+					
+					<div class="span4">
+					
+						<div class="slate">
+						
+							<div class="page-header">
+								<h2>学生信息</h2>
+							</div>
+						
+							<p><strong>学生ID：</strong><font th:text="${student.stuId}"></font></p>
+							<p><strong>出生日期：</strong><font th:text="${student.stuBirth}"></font></p>
+							<p><strong>身份证号：</strong><font th:text="${student.stuIdNumber}"></font></p>
+						
+						</div>
+					
+					</div>
+				
+					<div class="span4">
+					
+						<div class="slate">
+
+							<div class="page-header">
+								<h2>家长信息</h2>
+							</div>
+
+							<p><strong>家长姓名：</strong><font th:text="${student.parentName}"></font></p>
+							<p><strong>联系方式：</strong><font th:text="${student.stuPhone}"></font></p>
+						
+						</div>
+					
+					</div>
+					
+					</div>
+					
+					<div class="row">
+					
+					<div class="span8">
+				
+						<div class="slate">
+						
+							<div class="page-header">
+								<h2>历史缴费记录</h2>
+							</div>
+						
+							<table class="orders-table table">
+							<tbody>
+								<tr th:each="incomeStudentKinder:${incomeStudentKinders}">
+                                   <td><span th:text="${incomeStudentKinder.subprojectName}">其他</span>
+                                       <span class="label label-info" th:text="${incomeStudentKinder.incomeTime} "></span>
+                                       <span class="label label-success" th:text="${incomeStudentKinder.incomePayTerm}">其他</span>
+                                   </td>
+                                   <td>¥<font th:text="${incomeStudentKinder.incomePaid}"></font></td>
+								</tr>
+							</tbody>
+							</table>
+	
+						</div>
+					
+					</div>
+					
+					</div>
+					
+					<div class="row">
+						
+						<div class="span8">
+						
+							<div class="slate">
+							
+								<div class="page-header">
+									<h2>学费信息</h2>
+								</div>
+							
+								<table class="orders-table table">
+								<thead>
+									<tr>
+										<th>缴费时间</th>
+										<th>支付方式</th>
+										<th>实缴金额</th>
+										<th>使用时间</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="charge:${charges}">
+										<td><font th:text="${charge.chargeTime}"></font></td>
+										<td><font th:text="${charge.feePayTerm}"></font></td>
+										<td>¥<font th:text="${charge.paidFee}"></font></td>
+										<td><font th:text="${charge.feeStartTime}"></font> 至 <font th:text="${charge.feeOverTime}"></font></td>
+									</tr>
+								</tbody>
+								</table>
+		
+							</div>
+						
+						</div>
+						
+					</div>
+					
+				</div>
+			
+			</div>
+			
+		<div class="row">
+		
+			<div class="span10 footer">
+			
+				<p>&copy; Website Name 2014</p>
+			
+			</div>
+		
+		</div>
+		
+	</div>
+	
+	</div> <!-- end span10 -->
+		
+	</div> <!-- end row -->
+		
+</div> <!-- end container -->
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script th:src="@{/assets/js/jquery.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/bootstrap.js}" type="text/javascript"></script>
+
+
+<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='utf-8'></script></div>
+</body>
+</html>

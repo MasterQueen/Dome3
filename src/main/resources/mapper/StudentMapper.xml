@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo3.mapper.StudentMapper">
+
+    <select id="getAllStudent" resultType="com.example.demo3.entry.Student">
+        SELECT *
+        FROM student
+        ORDER BY payID
+        DESC
+    </select>
+
+    <select id="getStudentByID" resultType="com.example.demo3.entry.Student">
+        SELECT *
+        FROM student
+        WHERE
+        payID=#{payid}
+    </select>
+
+    <select id="getStudentByName" resultType="com.example.demo3.entry.Student">
+        SELECT *
+        FROM student
+        WHERE
+        studentName=#{studentName}
+    </select>
+
+    <insert id="insterStudent" useGeneratedKeys="true" keyProperty="payID"
+            keyColumn="payID" parameterType="com.example.demo3.entry.Student">
+        INSERT INTO
+        student(studentName, studentAge, studentSex, studentParents, studentPhone, payDate,payMoney,payMan,payRemark)
+        VALUES
+        (#{studentName}, #{studentAge}, #{studentSex}, #{studentParents}, #{studentPhone}, #{payDate}, #{payMoney}, #{payMan}, #{payRemark})
+    </insert>
+
+</mapper>

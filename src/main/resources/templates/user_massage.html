@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>686 Adminize</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <!-- Le styles -->
+    <link href="http://fonts.googleapis.com/css?family=Oxygen|Marck+Script" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/css/bootstrap.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/css/font-awesome.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/css/admin.css}" rel="stylesheet" type="text/css">
+    
+    <!--&lt;!&ndash; Le HTML5 shim, for IE6-8 support of HTML5 elements &ndash;&gt;-->
+    <!--&lt;!&ndash;[if lt IE 9]>-->
+	    <!--<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>-->
+    <!--<![endif]&ndash;&gt;-->
+
+</head>    
+<body>
+
+<div class="container">
+		
+	<div class="row">
+
+		<div class="span2">
+
+			<div class="main-left-col">
+
+				<h1><i class="icon-shopping-cart icon-large"></i> Finance</h1>
+
+				<ul class="side-nav">
+
+					<!-- 利用AdminController里的goto***()方法跳转 -->
+					<li class="active">
+						<a href="index.html"><i class="icon-home"></i> 收支概览 </a>
+					</li>
+					<li><a th:href="@{/listing}"><i class="icon-sitemap"></i> 支出详情 </a></li>
+					<li><a th:href="@{/orders}"><i class="icon-shopping-cart"></i> 收入详情 </a></li>
+					<li><a th:href="@{/report}"><i class="icon-signal"></i> 财务报表 </a></li>
+					<li><a th:href="@{/profile}"><i class="icon-group"></i> 园企管理 </a></li>
+					<li><a th:href="@{/vieworder}"><i class="icon-cogs"></i> 权限设置 </a></li>
+					<li><a th:href="@{/form}"><i class="icon-bullhorn"></i> 柠檬云 <!--<span class="badge badge-warning">0</span>--></a></li>
+					<li><a th:href="@{/content}"><i class="icon-info-sign"></i> 帮助 </a></li>
+				</ul>
+
+			</div> <!-- end main-left-col -->
+
+		</div> <!-- end span2 -->
+	
+	<div class="span10">
+		
+	<div class="secondary-masthead">
+	
+		<ul class="nav nav-pills pull-right">
+			<li>
+				<a href="#"><i class="icon-globe"></i> View Website</a>
+			</li>
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user"></i> <font th:text="${session.username}"></font> <b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="profile.html">Your Profile</a></li>
+					<li class="active"><a href="form.html">Account Settings</a></li>
+					<li class="divider"></li>
+					<li><a href="">Logout</a></li>
+				</ul>
+			</li>
+		</ul>
+
+		<ul class="breadcrumb">
+			<li>
+				<a href="#">Admin</a> <span class="divider">/</span>
+			</li>
+			<li class="active">Dashboard</li>
+		</ul>
+		
+	</div>
+	
+	<div class="main-area dashboard">
+	
+			<div class="alert alert-info">
+				<a class="close" data-dismiss="alert" href="#">x</a>
+				<h4 class="alert-heading">Information</h4>
+				The content template gives examples of generic text content formatting.
+			</div>
+			
+			<div class="row">
+				
+				<div class="span10">
+				
+					<div class="slate">
+						
+						<div class="page-header">
+							<h1>H1 Page Title</h1>
+							<h2>H2 Page Title</h2>
+							<h3>H3 Page Title</h3>
+							<h4>H4 Page Title</h4>
+							<h5>H5 Page Title</h5>
+							<h6>H6 Page Title</h6>
+						</div>
+						
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eget quam sit amet nisl dictum blandit. Sed cursus arcu eu libero posuere suscipit. Pellentesque ultricies, sem at varius aliquam, neque sapien placerat orci, a consequat elit neque suscipit velit. In sed ipsum elit. Vivamus nec orci nisi, ac vehicula dui. Donec lacinia nunc nec nulla egestas eget interdum ligula ullamcorper. Curabitur a tortor et nisi feugiat eleifend sit amet quis ligula. Suspendisse eu hendrerit turpis. Nullam at nisi sed urna dignissim mollis. Integer quis turpis vel nisi mollis fringilla ac in magna. Duis tempus dolor in nisi tristique bibendum.</p>
+						
+						<ul>
+							<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+							<li>Nullam non massa sit amet nunc consectetur venenatis in sit amet turpis.</li>
+							<li>Cras imperdiet elit ut mauris commodo varius.</li>
+							<li>Vestibulum quis mi non tortor mattis volutpat sit amet feugiat augue.</li>
+							<li>Etiam pharetra ipsum et nulla semper eleifend.</li>
+							<li>Fusce commodo sapien at tortor rutrum ultrices.</li>
+						</ul>
+						
+						<p>Sed fermentum metus rutrum metus sagittis vel rhoncus dui congue. Suspendisse elementum nisl et ante fermentum elementum. Phasellus vitae dui vel risus venenatis vestibulum. Quisque tellus erat, volutpat non tempus in, consectetur imperdiet nisl. Mauris feugiat, nibh vitae malesuada sollicitudin, dolor ipsum sodales neque, ut ultricies lorem magna et ante. In porttitor quam semper turpis faucibus dictum. Donec imperdiet, purus nec condimentum varius, diam augue posuere erat, vitae rutrum lacus erat et nibh. Nam a massa at dui sodales lobortis ut quis ante.</p>
+						
+						<ol>
+							<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+							<li>Nullam non massa sit amet nunc consectetur venenatis in sit amet turpis.</li>
+							<li>Cras imperdiet elit ut mauris commodo varius.</li>
+							<li>Vestibulum quis mi non tortor mattis volutpat sit amet feugiat augue.</li>
+							<li>Etiam pharetra ipsum et nulla semper eleifend.</li>
+							<li>Fusce commodo sapien at tortor rutrum ultrices.</li>
+						</ol>
+						
+						<p>In hac habitasse platea dictumst. Phasellus in magna augue, vel lobortis tellus. Pellentesque commodo pharetra nisl. Etiam quis egestas sapien. Donec pretium mauris nec sapien tincidunt porta. Aliquam eget libero hendrerit nulla ornare interdum. In et justo eros, sed aliquet mauris. Nunc semper gravida augue, in rhoncus lorem eleifend quis. Ut feugiat, lacus ac facilisis tristique, nulla felis dictum dui, vitae fringilla dolor turpis in magna. Vestibulum vel risus non justo sollicitudin malesuada. Nunc sem diam, dictum vitae viverra ac, hendrerit sed risus. Cras interdum sem non augue commodo condimentum. Integer ut est eu dolor fringilla pretium.</p>
+					
+					</div>
+				
+				</div>
+				
+			</div>
+			
+		<div class="row">
+		
+			<div class="span10 footer">
+			
+				<p>&copy; Website Name 2014</p>
+			
+			</div>
+		
+		</div>
+		
+	</div>
+	
+	</div> <!-- end span10 -->
+		
+	</div> <!-- end row -->
+		
+</div> <!-- end container -->
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script th:src="@{/assets/js/jquery.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/bootstrap.js}" type="text/javascript"></script>
+
+
+<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='utf-8'></script></div>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>幼儿园财务管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <!-- Le styles -->
+    <link href="http://fonts.googleapis.com/css?family=Oxygen|Marck+Script" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/css/bootstrap.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/css/font-awesome.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/css/admin.css}" rel="stylesheet" type="text/css">
+
+    <!--&lt;!&ndash; Le HTML5 shim, for IE6-8 support of HTML5 elements &ndash;&gt;-->
+    <!--&lt;!&ndash;[if lt IE 9]>-->
+	    <!--<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>-->
+    <!--<![endif]&ndash;&gt;-->
+
+</head>    
+<body>
+
+<div class="container">
+		
+	<div class="row">
+
+		<div class="span2">
+
+			<div class="main-left-col">
+
+				<h1><i class="icon-shopping-cart icon-large"></i> Finance</h1>
+
+				<ul class="side-nav">
+
+					<!-- 利用KinderController里的goto***()方法跳转 -->
+					<li><a th:href="@{/kinderindex}"><i class="icon-home"></i> 主页 </a></li>
+					<li><a th:href="@{/gotoaddstudent}"><i class="icon-group"></i> 添加学生 </a></li>
+					<li><a th:href="@{/gotokinderupdate}"><i class="icon-cogs"></i> 修改资料 </a></li>
+					<li><a th:href="@{/gotokinderhelp}"><i class="icon-info-sign"></i> 帮助 </a></li>
+				</ul>
+
+			</div> <!-- end main-left-col -->
+
+		</div> <!-- end span2 -->
+	
+	<div class="span10">
+		
+	<div class="secondary-masthead">
+	
+		<ul class="nav nav-pills pull-right">
+			<li>
+				<a href="#"><i class="icon-globe"></i> View Website</a>
+			</li>
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user"></i> <font th:text="${session.username}"></font> <b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="/kinder_account">我的账户</a></li>
+					<li><a th:href="@{/gotokinderupdate}">修改资料</a></li>
+					<li class="divider"></li>
+					<li><a href="/login">退出登录</a></li>
+				</ul>
+			</li>
+		</ul>
+
+		<ul class="breadcrumb">
+			<li>
+				<a href="#">园长</a> <span class="divider">/</span>
+			</li>
+			<li class="active">幼儿园财务管理系统</li>
+		</ul>
+		
+	</div>
+	
+	<div class="main-area dashboard">
+				
+				<div class="span10" style="padding-top:30px">
+
+					<div id="sss" class="slate">
+					
+						<div class="page-header">
+							<h2>修改资料</h2>
+						</div>
+					
+						<form class="form-horizontal" action="/updatekinder">
+						<fieldset>
+							<div class="control-group">
+								<label class="control-label">幼儿园ID</label>
+								<div class="controls">
+									<span class="input-xlarge uneditable-input" th:text="${kinder.kinderId}">幼儿园ID</span>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">幼儿园名称</label>
+								<div class="controls">
+									<input class="input-xlarge focused" name="kinderName" type="text" th:value="${kinder.kinderName}"/>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">园长姓名</label>
+								<div class="controls">
+									<input class="input-xlarge focused" name="leader" type="text" th:value="${kinder.leader}"/>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">幼儿园地址</label>
+								<div class="controls">
+									<input class="input-xlarge focused" name="kinderAddress" type="text" th:value="${kinder.kinderAddress}"/>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">联系电话</label>
+								<div class="controls">
+									<input class="input-xlarge focused" name="kinderPhone" type="text" th:value="${kinder.kinderPhone}"/>
+								</div>
+							</div>
+							<div class="control-group warning">
+								<label class="control-label" for="inputWarning">登录密码</label>
+								<div class="controls">
+									<input type="password" id="inputWarning" name="kinderPassword" placeholder="请输入登录密码">
+									<span class="help-inline">必填</span>
+								</div>
+							</div>
+							<div class="control-group success">
+								<label class="control-label" for="inputSuccess">新密码</label>
+								<div class="controls">
+									<input type="password" id="inputSuccess" name="kinderNewPassword" placeholder="请输入新密码">
+									<span class="help-inline">若不修改密码可不填</span>
+								</div>
+							</div>
+						</fieldset>
+							<div class="span10 " style="padding-left: 650px">
+								<button type="submit" class="btn btn-info" >修改</button>
+								<a type="button" class="btn btn-success" th:href="@{/kinderindex}">取消</a>
+							</div>
+						</form>
+
+					</div>
+				
+				</div>
+
+				
+			</div>
+			
+		<div class="row">
+		
+			<div class="span10 footer">
+			
+				<p>&copy; KMS 2018-2019</p>
+			
+			</div>
+		
+		</div>
+		
+	</div>
+	
+	</div> <!-- end span10 -->
+		
+	</div> <!-- end row -->
+		
+</div> <!-- end container -->
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script th:src="@{/assets/js/jquery.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/bootstrap.js}" type="text/javascript"></script>
+
+<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='utf-8'></script></div>
+</body>
+</html>
