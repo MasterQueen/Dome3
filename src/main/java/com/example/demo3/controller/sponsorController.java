@@ -122,8 +122,8 @@ public class sponsorController {
 
 
 
-    @RequestMapping(value = "sponsorbill_massage",method = {RequestMethod.POST})
-    private String SponsorBill_Massage(Model model,HttpServletRequest httpServletRequest , HttpSession httpSession)
+    @RequestMapping(value = "sponsorbill_massage",method = {RequestMethod.POST,RequestMethod.GET})
+    private String SponsorBill_Massage(Model model,HttpServletRequest httpServletRequest)
     {
         String sponsor_payID = httpServletRequest.getParameter("sponsor_payID");
 
@@ -135,4 +135,5 @@ public class sponsorController {
 
         return "/sponsorbill_massage";
     }
+
 }
