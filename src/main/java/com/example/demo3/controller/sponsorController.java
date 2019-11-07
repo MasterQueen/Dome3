@@ -17,13 +17,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * 赞助商类别
+ */
 @Controller
 public class sponsorController {
 
     @Autowired
     Sponsor_bill_sreviceimp sponsor_bill_sreviceimp;
-
-
 
 
     @RequestMapping(value = "gotosponsorbill_massage")
@@ -119,7 +120,9 @@ public class sponsorController {
 
     }
 
-    @RequestMapping(value = "/sponsorbill_massage",method = {RequestMethod.POST, RequestMethod.GET})
+
+
+    @RequestMapping(value = "sponsorbill_massage",method = {RequestMethod.POST})
     private String SponsorBill_Massage(Model model,HttpServletRequest httpServletRequest , HttpSession httpSession)
     {
         String sponsor_payID = httpServletRequest.getParameter("sponsor_payID");
