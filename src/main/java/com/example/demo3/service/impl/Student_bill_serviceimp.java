@@ -4,8 +4,6 @@ import com.example.demo3.entry.Student;
 import com.example.demo3.mapper.StudentMapper;
 import com.example.demo3.service.Student_bill_service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,7 +40,7 @@ public class Student_bill_serviceimp implements Student_bill_service {
     }
 
     @Override
-    public boolean updateStudent(Student student) {
-        return false;
+    public int updateStudent(Student student) {
+        return studentMapper.updateStudentMassage(student);
     }
 }

@@ -43,19 +43,23 @@ public class studentController {
       * @param pn
       * @param model
       * @param request
-      * @param session
+      * @param
       * @return
       */
      @RequestMapping(value = "gotoincome_bill", method = {RequestMethod.POST, RequestMethod.GET})
-     public ModelAndView StudentIndex(@RequestParam(required = false, defaultValue = "1", value = "pn") Integer pn, Model model, HttpServletRequest request, HttpSession session) {
+     public ModelAndView StudentIndex(@RequestParam(required = false, defaultValue = "1", value = "pn") Integer pn, Model model, HttpServletRequest request) {
 
 
          PageHelper.startPage(pn, 10);
 
          //根据搜索结果列出学生
          String search = request.getParameter("search");
+
          System.out.println(search);
         //如果界面没有传入search的值  则搜索全部
+
+
+
          if (search == null || search.equals("")) {
 
              List<Student> studentList = student_bill_serviceimp.getAllStudent();
@@ -78,6 +82,24 @@ public class studentController {
              return new ModelAndView("/income_bill.html", "pageInfo", pageInfo);
          }
 
+
+
+     }
+
+    /**
+     * 通过payID获取student缴费信息
+     * @param payID
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "getStudent_BillBypayID", method = {RequestMethod.POST, RequestMethod.GET})
+     public String getStudent_BillBypayID(@RequestParam() Integer payID,Model model){
+
+         Student resultStudent  = student_bill_serviceimp.getStudentBypayiID(payID);
+
+         model.addAttribute("student",resultStudent);
+
+         return "updatestudent_bill";
      }
 
 
@@ -85,11 +107,11 @@ public class studentController {
      * 添加学生账单
      * @param model
      * @param request
-     * @param httpSession
+     * @param
      * @return
      */
      @RequestMapping(value = "/addstudent_billaction",method = {RequestMethod.POST, RequestMethod.GET})
-     public String AddStudent_BillAction(Model model,HttpServletRequest request, HttpSession httpSession){
+     public String AddStudent_BillAction(Model model,HttpServletRequest request){
 
          String studentName = request.getParameter("studentName");
          String studentSex = request.getParameter("studentSex");
@@ -162,6 +184,7 @@ public class studentController {
 
         String studentpayID = httpServletRequest.getParameter("studentpayID");
 
+
         int payID = Integer.parseInt(studentpayID);
         Student student = student_bill_serviceimp.getStudentBypayiID(payID);
 
@@ -172,7 +195,75 @@ public class studentController {
 
          return  "/studentbill_massage";
        }
-     
 
+
+    /**
+     * 修改学生缴费账单
+     * @param model
+     * @param httpServletRequest
+     * @return
+     */
+       @RequestMapping(value = "/updateStudent_Bill",method = {RequestMethod.POST,RequestMethod.GET})
+       public String UpadteStudent_Bill(Model model,HttpServletRequest httpServletRequest)
+       {
+           String payID_String = httpServletRequest.getParameter("payID");
+
+           //获取前台数据
+           String studentName = httpServletRequest.getParameter("studentName");
+           String studentAge_String = httpServletRequest.getParameter("studentAge");
+           String studentSex = httpServletRequest.getParameter("studentSex");
+           String studentParents = httpServletRequest.getParameter("studentParents");
+           String studentPhone_String = httpServletRequest.getParameter("studentPhone");
+           String payDate = httpServletRequest.getParameter("payDate");
+           String payMoney_String = httpServletRequest.getParameter("payMoney");
+           String payMan = httpServletRequest.getParameter("payMan");
+           String payRemark = httpServletRequest.getParameter("payRemark");
+
+
+           //空值判断
+           if (payID_String.equals("")||studentAge_String.equals("")||studentPhone_String.equals("")||payMoney_String.equals("")||studentName.equals("")||studentSex.equals("")||studentParents.equals("")||payDate.equals("")||payMan.equals("")||payRemark.equals("")) {
+               System.out.println("kongde");
+               model.addAttribute("msg1","请输入所有信息");
+
+               return "/updatestudent_bill.html";
+           }else {
+
+               int studentAge = Integer.parseInt(studentAge_String);
+               int studentPhone = Integer.parseInt(studentPhone_String);
+               int payMoney = Integer.parseInt(payMoney_String);
+               int payId = Integer.parseInt(payID_String);
+
+               Student student = new Student();
+
+               student.setStudentSex(studentSex);
+               student.setStudentParents(studentParents);
+               student.setStudentPhone(studentPhone);
+               student.setPayRemark(payRemark);
+               student.setPayMoney(payMoney);
+               student.setPayDate(payDate);
+               student.setPayMan(payMan);
+               student.setPayID(payId);
+               student.setStudentName(studentName);
+               student.setStudentAge(studentAge);
+
+               int result = student_bill_serviceimp.updateStudent(student);
+
+               //修改结果判断
+               if (result<=0)
+               {
+                   model.addAttribute("msg2","修改失败");
+
+                   return "/updatestudent_bill.html";
+               }else {
+
+                   model.addAttribute("msg3","修改成功");
+                   model.addAttribute("student",student);
+
+                  return "/updatestudent_bill.html";
+
+               }
+           }
+
+       }
 
 }

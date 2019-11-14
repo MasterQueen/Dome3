@@ -33,4 +33,9 @@ public class Sponsor_bill_sreviceimp implements Sponsor_bill_service {
     public boolean insterSponsor(Sponsor sponsor) {
         return sponsorMapper.insterSponsor(sponsor);
     }
+
+    @Override
+    public int updateSponsorBill(Sponsor sponsor) {
+        return sponsorMapper.updateSponsorBill(sponsor);
+    }
 }

@@ -32,4 +32,17 @@
         (#{sponsorName}, #{sponsorPhone}, #{sponsor_payDate}, #{sponsor_payMoney}, #{sponsor_payRemark})
     </insert>
 
+    <update id="updateSponsorBill" parameterType="com.example.demo3.entry.Sponsor">
+        UPDATE
+        sponsor
+        SET
+        sponsorName = #{sponsorName},
+        sponsorPhone = #{sponsorPhone},
+        sponsor_payDate = #{sponsor_payDate},
+        sponsor_payMoney = #{sponsor_payMoney},
+        sponsor_payRemark = #{sponsor_payRemark}
+        WHERE
+        sponsor_payID = #{sponsor_payID}
+    </update>
+
 </mapper>

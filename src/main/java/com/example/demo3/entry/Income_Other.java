@@ -11,7 +11,11 @@ public class Income_Other implements Serializable {
 
     private int other_payMoney;
 
+    private String other_payMan;
+
     private String other_payRemark;
+
+
 
     public int getOther_payID() {
         return other_payID;
@@ -44,7 +48,13 @@ public class Income_Other implements Serializable {
     public void setOther_payRemark(String other_payRemark) {
         this.other_payRemark = other_payRemark;
     }
+    public String getOther_payMan() {
+        return other_payMan;
+    }
 
+    public void setOther_payMan(String other_payMan) {
+        this.other_payMan = other_payMan;
+    }
     @Override
     public String toString() {
         return "Income_Other{" +

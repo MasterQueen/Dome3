@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>幼儿园财务管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <!-- Le styles -->
+    <link href="http://fonts.googleapis.com/css?family=Oxygen|Marck+Script" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/css/bootstrap.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/css/font-awesome.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/css/admin.css}" rel="stylesheet" type="text/css">
+
+    <!--&lt;!&ndash; Le HTML5 shim, for IE6-8 support of HTML5 elements &ndash;&gt;-->
+    <!--&lt;!&ndash;[if lt IE 9]>-->
+	    <!--<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>-->
+    <!--<![endif]&ndash;&gt;-->
+
+</head>    
+<body>
+
+<div class="container">
+		
+	<div class="row">
+
+		<div class="span2">
+
+			<div class="main-left-col">
+
+				<h1><i class="icon-shopping-cart icon-large"></i> Finance</h1>
+
+				<ul class="side-nav">
+
+					<!-- 利用KinderController里的goto***()方法跳转 -->
+					<li><a th:href="@{/gotomain}"><i class="icon-home"></i> 首页 </a></li>
+					<li><a th:href="@{/gotoincome_bill}"><i class="icon-group"></i> 学费收入 </a></li>
+					<li><a th:href="@{/gotosponsorincome_bill}"><i class="icon-cogs"></i> 合资收入 </a></li>
+					<li><a th:href="@{/gotouser_massage}"><i class="icon-cogs"></i> 其他收入</a></li>
+					<li><a th:href="@{/gotohelp}"><i class="icon-info-sign"></i> 帮助 </a></li>
+				</ul>
+
+			</div> <!-- end main-left-col -->
+
+		</div> <!-- end span2 -->
+	
+	<div class="span10">
+		
+	<div class="secondary-masthead">
+	
+		<ul class="nav nav-pills pull-right">
+			<li>
+				<a href="#"><i class="icon-globe"></i> View Website</a>
+			</li>
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user"></i> <font th:text="${session.username}"></font> <b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="/kinder_account">我的账户</a></li>
+                    <li><a th:href="@{/gotokinderupdate}">修改资料</a></li>
+					<li class="divider"></li>
+					<li><a href="/login">退出登录</a></li>
+				</ul>
+			</li>
+		</ul>
+
+		<ul class="breadcrumb">
+			<li>
+				<a href="#">园长</a> <span class="divider">/</span>
+			</li>
+			<li class="active">幼儿园财务管理系统</li>
+		</ul>
+		
+	</div>
+	
+	<div class="main-area dashboard">
+				
+				<div class="span10" style="padding-top:30px">
+
+					<div id="sss" class="slate">
+					
+						<div class="page-header">
+							<h2>新增收款记录</h2>
+						</div>
+					
+						<form class="form-horizontal" action="/updateStudent_Bill">
+							<fieldset>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="studentName">缴费编号</label>
+                                    <div class="controls">
+                                        <input class="input-xlarge focused" readonly="readonly" name="payID" type="text" id="payID" th:attr="value=${student.payID}"/>
+                                    </div>
+                                </div>
+								<div class="control-group">
+									<label class="control-label" for="studentName">学生姓名</label>
+									<div class="controls">
+										<input class="input-xlarge focused" name="studentName" type="text" id="studentName" th:attr="value=${student.studentName}"/>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="studentAge">学生年龄</label>
+									<div class="controls">
+										<input class="input-xlarge focused" name="studentAge" type="text" id="studentAge" th:attr="value=${student.studentAge}" >
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="studentSex">学生性别</label>
+									<div class="controls">
+										<input class="input-xlarge disabled" name="studentSex"  id="studentSex" type="text" th:attr="value=${student.studentSex}">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="studentParents">家长姓名</label>
+									<div class="controls">
+										<input class="input-xlarge focused" type="text" name="studentParents" id="studentParents" th:attr="value=${student.studentParents}" >
+									</div>
+
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="studentPhone" placeholder="${student.studentPhone}">联系电话</label>
+									<div class="controls">
+										<input class="input-xlarge focused" name="studentPhone" type="text" id="studentPhone" th:attr="value=${student.studentPhone}">
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label" placeholder="${student.payMoney}">缴费金额</label>
+									<div class="controls">
+										<input class="input-xlarge focused" name="payMoney" type="number" step="0.01" placeholder="元" th:attr="value=${student.payMoney}"/>
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label" placeholder="${student.payDate}">缴费日期</label>
+									<div class="controls">
+										<input class="input-xlarge focused" name="payDate" type="date" th:attr="value=${student.payDate}"/>
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label" for="payMan" placeholder="${student.payMan}">缴费人</label>
+									<div class="controls">
+										<input class="input-xlarge focused" name="payMan" type="text" id="payMan" th:attr="value=${student.payMan}">
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label" for="payRemark" placeholder="${student.payRemark}">备注</label>
+									<div class="controls">
+										<input class="input-xlarge focused" name="payRemark" type="text" id="payRemark" th:attr="value=${student.payRemark}">
+									</div>
+								</div>
+								<p style="color: red" th:text="${msg1}" th:if="${not #strings.isEmpty(msg1)}"></p>
+								<p style="color: red" th:text="${msg2}" th:if="${not #strings.isEmpty(msg2)}"></p>
+                                <p style="color: red" th:text="${msg3}" th:if="${not #strings.isEmpty(msg3)}"></p>
+							</fieldset>
+							<div class="span10 " style="padding-left: 650px">
+
+								<button type="submit" class="btn btn-info" >修改</button>
+								<!--onclick="clearinput();"-->
+								<button type="reset" class="btn btn-success" >清空</button>
+							</div>
+						</form>
+
+					</div>
+				
+				</div>
+				
+			</div>
+			
+		<div class="row">
+		
+			<div class="span10 footer">
+			
+				<p>&copy; KMS 2018-2019</p>
+			
+			</div>
+		
+		</div>
+		
+	</div>
+	
+	</div> <!-- end span10 -->
+		
+	</div> <!-- end row -->
+		
+</div> <!-- end container -->
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script th:src="@{/assets/js/jquery.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/bootstrap.js}" type="text/javascript"></script>
+
+<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='utf-8'></script></div>
+</body>
+</html>

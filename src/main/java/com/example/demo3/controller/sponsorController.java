@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
- * 赞助商类别
+ * 赞助商账单类
  */
 @Controller
 public class sponsorController {
@@ -40,7 +40,7 @@ public class sponsorController {
         PageHelper.startPage(pn,10);
 
         String search = request.getParameter("search");
-        System.out.println("sponsor"+search);
+
 
         if (search==null||search.equals(""))
         {
@@ -106,7 +106,6 @@ public class sponsorController {
 
         if (result){
 
-
             return "forward:/addsponsor_bill";
 
         }else{
@@ -115,8 +114,6 @@ public class sponsorController {
 
             return "/addsponsor_bill";
         }
-
-
 
     }
 
@@ -127,13 +124,73 @@ public class sponsorController {
     {
         String sponsor_payID = httpServletRequest.getParameter("sponsor_payID");
 
+        String search = httpServletRequest.getParameter("search");
+
         int payID = Integer.parseInt(sponsor_payID);
 
         Sponsor sponsor = sponsor_bill_sreviceimp.getSponsorBypayID(payID);
 
         model.addAttribute("sponsor",sponsor);
 
-        return "/sponsorbill_massage";
+        if (search.equals("1"))
+        {
+            return "/sponsorbill_massage";
+        }else
+
+        {
+            return "/updatesponsor_bill";
+        }
+    }
+
+
+    @RequestMapping(value = "updatesponsor_bill",method = {RequestMethod.POST,RequestMethod.GET})
+    public String UpadteSponsor_Bill(Model model,HttpServletRequest request)
+    {
+
+
+        String payID = request.getParameter("sponsor_payID");
+        String paydate = request.getParameter("sponsor_payDate");
+        String payremark = request.getParameter("sponsor_payRemark");
+        String sponsorname = request.getParameter("sponsorName");
+        String paymoney = request.getParameter("sponsor_payMoney");
+        String sponsorphone = request.getParameter("sponsorPhone");
+
+        if (paydate.equals("") || paymoney.equals("") || payremark.equals("") || sponsorname.equals("") || sponsorphone.equals(""))
+        {
+            model.addAttribute("msg1","请输入所有信息");
+
+            return "updatesponsor_bill";
+
+        }else {
+
+
+            Sponsor sponsor = new Sponsor();
+
+            sponsor.setSponsor_payID(Integer.parseInt(payID));
+            sponsor.setSponsor_payDate(paydate);
+            sponsor.setSponsor_payRemark(payremark);
+            sponsor.setSponsorName(sponsorname);
+            sponsor.setSponsorPhone(Integer.parseInt(sponsorphone));
+            sponsor.setSponsor_payMoney(Integer.parseInt(paymoney));
+
+            int result = sponsor_bill_sreviceimp.updateSponsorBill(sponsor);
+
+            if (result<=0)
+            {
+                model.addAttribute("msg2","添加失败");
+
+                return "updatesponsor_bill";
+            }else
+            {
+                model.addAttribute("msg3","修改成功");
+                model.addAttribute("sponsor",sponsor);
+
+                return "updatesponsor_bill";
+            }
+
+        }
+
+
     }
 
 }

@@ -36,6 +36,14 @@ public interface StudentMapper {
     boolean insterStudent(Student student);
 
 
+    /**
+     * 更新student信息
+     * @param student
+     * @return
+     */
+    int updateStudentMassage(Student student);
+
+
 
 
 }

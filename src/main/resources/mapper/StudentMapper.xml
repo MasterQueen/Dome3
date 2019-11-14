@@ -33,4 +33,22 @@
         (#{studentName}, #{studentAge}, #{studentSex}, #{studentParents}, #{studentPhone}, #{payDate}, #{payMoney}, #{payMan}, #{payRemark})
     </insert>
 
+    <update id="updateStudentMassage" parameterType="com.example.demo3.entry.Student" >
+        UPDATE student
+        SET
+        studentName = #{studentName},
+        studentAge = #{studentAge},
+        studentPhone = #{studentPhone},
+        studentParents = #{studentParents},
+        studentSex = #{studentSex},
+        payMan = #{payMan},
+        payMoney = #{payMoney},
+        payDate = #{payDate},
+        payRemark = #{payRemark}
+        WHERE
+        payID = #{payID}
+
+
+    </update>
+
 </mapper>

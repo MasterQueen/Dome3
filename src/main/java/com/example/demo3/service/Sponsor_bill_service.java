@@ -33,4 +33,7 @@ public interface Sponsor_bill_service {
      */
     boolean insterSponsor(Sponsor sponsor);
 
+
+    int updateSponsorBill(Sponsor sponsor);
+
 }

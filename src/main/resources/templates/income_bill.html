@@ -123,7 +123,7 @@
 			<td><a style="padding-left: -240px" th:text="${student.payDate}"></a></td>
 		<td class="actions">
 		<a class="btn btn-small btn-primary" th:href="@{/studentbill_massage(studentpayID=${student.payID})}">详细信息</a>
-		<a class="btn btn-small btn-info" th:href="@{/gotokinderaddincome(stuId=${student.payID})}">修改</a>
+		<a class="btn btn-small btn-info" th:href="@{/getStudent_BillBypayID(payID=${student.payID})}">修改</a>
 		</td>
 		</tr>
 		</tbody>

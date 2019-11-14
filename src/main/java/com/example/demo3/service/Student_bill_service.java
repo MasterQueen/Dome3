@@ -2,7 +2,6 @@ package com.example.demo3.service;
 
 import com.example.demo3.entry.Student;
 
-import java.util.Arrays;
 import java.util.List;
 
 public interface Student_bill_service {
@@ -42,11 +41,13 @@ public interface Student_bill_service {
    boolean deleteStudent(int payID);
 
     /**
-     * 跟新学生信息
+     * 更新学生信息
      * @param student
      * @return
      */
-   boolean updateStudent(Student student);
+   int updateStudent(Student student);
+
+
 
 
 }

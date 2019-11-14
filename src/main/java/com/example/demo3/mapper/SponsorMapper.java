@@ -36,6 +36,7 @@ public interface SponsorMapper {
      */
     boolean insterSponsor(Sponsor sponsor);
 
+    int updateSponsorBill(Sponsor sponsor);
 
 
 }

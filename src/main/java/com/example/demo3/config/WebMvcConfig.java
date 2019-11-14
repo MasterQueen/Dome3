@@ -55,14 +55,22 @@ WebMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/addstudent_bill.html").setViewName("addstudent_bill");
         registry.addViewController("/addstudent_billaction.html").setViewName("addstudent_billaction");
         registry.addViewController("/studentbill_massage.html").setViewName("studentbill_massage");
+        registry.addViewController("/updatestudent_bill.html").setViewName("updatestudent_bill");
+
+
         registry.addViewController("/expend_bill.html").setViewName("expend_bill");
         registry.addViewController("/user_massage.html").setViewName("user_massage");
         registry.addViewController("/help.html").setViewName("help");
 
         registry.addViewController("/addsponsor_bill.html").setViewName("addsponsor_bill");
         registry.addViewController("/sponsorbill_massage.html").setViewName("sponsorbill_massage");
-
+        registry.addViewController("/updatesponsor_bill.html").setViewName("updatesponsor_bill");
         registry.addViewController("/sponsorincome_bill.html").setViewName("sponsorincome_bill");
+
+        registry.addViewController("/otherincome_bill.html").setViewName("otherincome_bill");
+
+
+
 
     }
 }
