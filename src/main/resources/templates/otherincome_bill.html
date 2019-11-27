@@ -38,7 +38,7 @@
 					<li><a th:href="@{/gotomain}"><i class="icon-home"></i> 首页 </a></li>
 					<li><a th:href="@{/gotoincome_bill}"><i class="icon-group"></i> 学费收入 </a></li>
 					<li><a th:href="@{/gotosponsorincome_bill}"><i class="icon-cogs"></i> 合资收入 </a></li>
-					<li><a th:href="@{/gotouser_massage}"><i class="icon-cogs"></i> 其他收入</a></li>
+					<li><a th:href="@{/gotoIncome_Other_Bill}"><i class="icon-cogs"></i> 其他收入</a></li>
 					<li><a th:href="@{/gotohelp}"><i class="icon-info-sign"></i> 帮助 </a></li>
 				</ul>
 
@@ -83,7 +83,7 @@
 
 		<div class="slate">
 
-		<form class="form-inline" action="/gotosponsorincome_bill">
+		<form class="form-inline" action="/gotoIncome_Other_Bill">
 		<input type="text" class="input-large" name="search" placeholder="请输入关键字进行检索">
 		<button type="submit" class="btn btn-primary">查找</button>
 		</form>
@@ -102,7 +102,7 @@
 
 		<div class="page-header">
 		<div class="btn-group pull-right">
-		<a class="btn btn-small btn-danger" th:href="@{/addsponsor_bill}">添加账目</a>
+		<a class="btn btn-small btn-danger" th:href="@{/addother_income_bill}">添加账目</a>
 		</div>
 		<h2>赞助商列表</h2>
 		</div>
@@ -115,15 +115,15 @@
 		<!--</tr>-->
 		<!--</thead>-->
 		<tbody>
-		<tr th:each="sponsor:${sponsorList}">
+		<tr th:each="income_other:${income_other}">
 		<!-- 加参数 -->
-		<td><a  th:text="${sponsor.sponsorName}"></a>
-			<td><a style="padding-left: -80px" th:text="${sponsor.sponsorPhone}"></a></td>
-			<td><a style="padding-left: -160px" th:text="${sponsor.sponsor_payDate}"></a></td>
-			<td><a style="padding-left: -240px" th:text="${sponsor.sponsor_payMoney}"></a></td>
+		<td><a  th:text="${income_other.other_payMan}"></a>
+			<td><a style="padding-left: -80px" th:text="${income_other.other_payMoney}"></a></td>
+			<td><a style="padding-left: -160px" th:text="${income_other.other_payDate}"></a></td>
+			<td><a style="padding-left: -240px" th:text="${income_other.other_payRemark}"></a></td>
 		<td class="actions">
-		<a class="btn btn-small btn-primary" th:href="@{/sponsorbill_massage(sponsor_payID=${sponsor.sponsor_payID},search='1')}">详细信息</a>
-		<a class="btn btn-small btn-info" th:href="@{/sponsorbill_massage(sponsor_payID=${sponsor.sponsor_payID},search='2')}">修改</a>
+		<a class="btn btn-small btn-primary" th:href="@{/other_incomebillmassage(other_payID=${income_other.other_payID},search='1')}">详细信息</a>
+		<a class="btn btn-small btn-info" th:href="@{/other_incomebillmassage(other_payID=${income_other.other_payID},search='2')}">修改</a>
 		</td>
 		</tr>
 		</tbody>
@@ -140,20 +140,20 @@
 		<nav aria-label="Page navigation">
 		<ul class="pagination">
 		<!--首页 和 上一页-->
-		<li> <a th:href="@{/gotosponsorincome_bill}" class="btn btn-sm"> 首页 </a></li>
+		<li> <a th:href="@{/gotoIncome_Other_Bill}" class="btn btn-sm"> 首页 </a></li>
 		<th:if test="${pageInfo.hasPreviousPage - 1} > 0">
 		<li>
-		<a th:href="@{/gotosponsorincome_bill(pn=${pageInfo.pageNum - 1})}" aria-label="Previous" class="btn btn-sm"  data-th-classappend="${(pageInfo.pageNum - 1) eq 0} ? 'disabled' : ''">
+		<a th:href="@{/gotoIncome_Other_Bill(pn=${pageInfo.pageNum - 1})}" aria-label="Previous" class="btn btn-sm"  data-th-classappend="${(pageInfo.pageNum - 1) eq 0} ? 'disabled' : ''">
 		< </a> </li>
 		</th:if> <!--迭代生成页码--> <li>
-		<a th:each="i:${pageInfo.navigatepageNums}" th:href="@{/gotosponsorincome_bill(pn=${i})}" th:text="${i}" class="btn btn-sm" data-th-classappend="${(pageInfo.pageNum) eq i} ? 'btn-info' : ''">
+		<a th:each="i:${pageInfo.navigatepageNums}" th:href="@{/gotoIncome_Other_Bill(pn=${i})}" th:text="${i}" class="btn btn-sm" data-th-classappend="${(pageInfo.pageNum) eq i} ? 'btn-info' : ''">
 		</a> </li>
 		<!--下一页 和 末页--> <th:if test="${pageInfo.hasNextPage }">
-		<li> <a aria-label="Next" class="btn btn-sm" th:href="@{/gotosponsorincome_bill(pn=${pageInfo.pageNum + 1})}" data-th-classappend="${(pageInfo.pageNum) eq (pageInfo.pages)} ? 'disabled' : ''">
+		<li> <a aria-label="Next" class="btn btn-sm" th:href="@{/gotoIncome_Other_Bill(pn=${pageInfo.pageNum + 1})}" data-th-classappend="${(pageInfo.pageNum) eq (pageInfo.pages)} ? 'disabled' : ''">
 		> </a> </li>
 		</th:if>
 
-		<li> <a th:href="@{/gotosponsorincome_bill(pn=${pageInfo.pages})}" class="btn btn-sm"> 末页 </a>
+		<li> <a th:href="@{/gotoIncome_Other_Bill(pn=${pageInfo.pages})}" class="btn btn-sm"> 末页 </a>
 		</li>
 		</ul>
 		</nav>

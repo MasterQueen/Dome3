@@ -1,6 +1,6 @@
 package com.example.demo3.mapper;
 
-import com.example.demo3.entry.Student;
+import com.example.demo3.entry.income.Student;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -33,7 +33,7 @@ public interface StudentMapper {
      * @param student
      * @return
      */
-    boolean insterStudent(Student student);
+    int insterStudent(Student student);
 
 
     /**
@@ -42,6 +42,14 @@ public interface StudentMapper {
      * @return
      */
     int updateStudentMassage(Student student);
+
+
+    /**
+     * 根据payID删除student信息
+     * @param payID
+     * @return
+     */
+    int delectStudentMassage(int payID);
 
 
 

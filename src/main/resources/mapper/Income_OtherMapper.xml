@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.demo3.mapper.StudentMapper">
+<mapper namespace="com.example.demo3.mapper.Income_OtherMapper">
 
-    <select id="getAll" resultType="com.example.demo3.entry.Income_Other" >
+    <select id="getAll" resultType="com.example.demo3.entry.income.Income_Other" >
         SELECT *
 
         FROM income_other
@@ -12,12 +12,20 @@
         DESC
     </select>
 
-    <select id="getIncome_OtheByPayId" resultType="com.example.demo3.entry.Income_Other" parameterType="java.lang.Integer">
+    <select id="getIncome_OtheByPayId" resultType="com.example.demo3.entry.income.Income_Other" parameterType="java.lang.Integer">
 
         SELECT *
         FROM income_other
         WHERE
         other_payID=#{other_payID}
+
+    </select>
+
+    <select id="getIncome_OtherByOther_payMan" parameterType="java.lang.String" resultType="com.example.demo3.entry.income.Income_Other">
+        SELECT *
+        FROM  income_other
+        WHERE
+        other_payMan = #{other_payMan}
 
     </select>
 
@@ -29,16 +37,16 @@
     </delete>
 
     <insert id="insertIncome_Other" useGeneratedKeys="true" keyProperty="other_payID"
-            keyColumn="other_payID" parameterType="com.example.demo3.entry.Income_Other">
+            keyColumn="other_payID" parameterType="com.example.demo3.entry.income.Income_Other">
 
         INSERT INTO
-        income_other(other_payDate, other_payMoney, other_payRemark, othe_payMan)
+        income_other(other_payDate, other_payMoney, other_payRemark, other_payMan)
         VALUES
-        (#{other_payDate},#{other_payMoney},#{other_payRemark},#{othe_payMan})
+        (#{other_payDate},#{other_payMoney},#{other_payRemark},#{other_payMan})
 
     </insert>
 
-    <update id="updateIncome_Other" parameterType="com.example.demo3.entry.Income_Other">
+    <update id="updateIncome_Other" parameterType="com.example.demo3.entry.income.Income_Other">
 
         UPDATE
         income_other
@@ -46,7 +54,7 @@
         other_payDate = #{other_payDate},
         other_payMoney = #{other_payMoney},
         other_payRemark = #{other_payRemark},
-        othe_payMan = #{other_payMan}
+        other_payMan = #{other_payMan}
         WHERE
         other_payID= #{other_payID}
 

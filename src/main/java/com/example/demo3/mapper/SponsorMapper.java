@@ -1,8 +1,7 @@
 package com.example.demo3.mapper;
 
- import  com.example.demo3.entry.Sponsor;
-import com.example.demo3.entry.Student;
-import org.springframework.stereotype.Component;
+ import com.example.demo3.entry.income.Sponsor;
+ import org.springframework.stereotype.Component;
 
 import java.util.List;
 

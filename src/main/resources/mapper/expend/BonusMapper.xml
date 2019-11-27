@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo3.mapper.Income_OtherMapper">
+
+
+    <sql id="Base_ALL">
+        bonus_expendID,bonus_expendMoney,bonus_expebdDate,bonus_expendAim,bonus_expendRemark,bonus_transactor
+    </sql>
+
+    <select id="getAllBonus" resultType="com.example.demo3.entry.expend.Bonus">
+
+        SELECT
+        <include refid="Base_ALL"/>
+        FROM bonus
+        ORDER bonus_expendID DESC ;
+    </select>
+
+    <select id="getBonus" resultType="com.example.demo3.entry.expend.Bonus" parameterType="java.util.HashMap">
+        SELECT
+        <include refid="Base_ALL"/>
+
+        FROM bonus
+        <trim prefix="where" prefixOverrides="and">
+            <choose>
+                <when test="bonus_expendID!=null and bonus_expendID != ''">
+                    AND bonus_expendID = #{bonus_expendID}
+                </when>
+
+                <when test="bonus_expendDate!=null and bonus_expendDate !=''">
+                    AND bonus_expendDate = #{bonus_expendDate}
+                </when>
+
+                <when test="bonus_expendAim!=null and bonus_expendAim!=''">
+                    AND bonus_expendAim = #{bonus_expendAim}
+                </when>
+
+                <when test="bonus_transactor!=null and bonus_transactor!=''">
+
+                    AND  bonus_transactor = #{bonus_transactor}
+                </when>
+
+            </choose>
+        </trim>
+
+    </select>
+
+</mapper>

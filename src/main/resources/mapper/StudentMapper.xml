@@ -4,21 +4,21 @@
 
 <mapper namespace="com.example.demo3.mapper.StudentMapper">
 
-    <select id="getAllStudent" resultType="com.example.demo3.entry.Student">
+    <select id="getAllStudent" resultType="com.example.demo3.entry.income.Student">
         SELECT *
         FROM student
         ORDER BY payID
         DESC
     </select>
 
-    <select id="getStudentByID" resultType="com.example.demo3.entry.Student">
+    <select id="getStudentByID" resultType="com.example.demo3.entry.income.Student">
         SELECT *
         FROM student
         WHERE
         payID=#{payid}
     </select>
 
-    <select id="getStudentByName" resultType="com.example.demo3.entry.Student">
+    <select id="getStudentByName" resultType="com.example.demo3.entry.income.Student">
         SELECT *
         FROM student
         WHERE
@@ -26,14 +26,14 @@
     </select>
 
     <insert id="insterStudent" useGeneratedKeys="true" keyProperty="payID"
-            keyColumn="payID" parameterType="com.example.demo3.entry.Student">
+            keyColumn="payID" parameterType="com.example.demo3.entry.income.Student">
         INSERT INTO
         student(studentName, studentAge, studentSex, studentParents, studentPhone, payDate,payMoney,payMan,payRemark)
         VALUES
         (#{studentName}, #{studentAge}, #{studentSex}, #{studentParents}, #{studentPhone}, #{payDate}, #{payMoney}, #{payMan}, #{payRemark})
     </insert>
 
-    <update id="updateStudentMassage" parameterType="com.example.demo3.entry.Student" >
+    <update id="updateStudentMassage" parameterType="com.example.demo3.entry.income.Student" >
         UPDATE student
         SET
         studentName = #{studentName},

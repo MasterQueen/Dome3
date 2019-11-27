@@ -1,6 +1,6 @@
 package com.example.demo3.service;
 
-import com.example.demo3.entry.Sponsor;
+import com.example.demo3.entry.income.Sponsor;
 
 import java.util.List;
 

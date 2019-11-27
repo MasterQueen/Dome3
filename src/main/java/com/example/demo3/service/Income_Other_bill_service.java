@@ -1,6 +1,6 @@
 package com.example.demo3.service;
 
-import com.example.demo3.entry.Income_Other;
+import com.example.demo3.entry.income.Income_Other;
 
 import java.util.List;
 
@@ -39,6 +39,14 @@ public interface Income_Other_bill_service {
      * @return
      */
     int insertIncome_Other(Income_Other income_other);
+
+
+    /**
+     * 根据账单申报人查询其他账单信息
+     * @param other_payMan
+     * @return
+     */
+    List getIncome_OtherByOther_payMan(String other_payMan);
 
 
 }

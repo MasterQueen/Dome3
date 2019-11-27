@@ -38,7 +38,7 @@
 					<li><a th:href="@{/gotomain}"><i class="icon-home"></i> 首页 </a></li>
 					<li><a th:href="@{/gotoincome_bill}"><i class="icon-group"></i> 学费收入 </a></li>
 					<li><a th:href="@{/gotosponsorincome_bill}"><i class="icon-cogs"></i> 合资收入 </a></li>
-					<li><a th:href="@{/gotouser_massage}"><i class="icon-cogs"></i> 其他收入</a></li>
+					<li><a th:href="@{/gotoIncome_Other_Bill}"><i class="icon-cogs"></i> 其他收入</a></li>
 					<li><a th:href="@{/gotohelp}"><i class="icon-info-sign"></i> 帮助 </a></li>
 				</ul>
 
@@ -85,44 +85,39 @@
 							<h2>修改赞助账单信息</h2>
 						</div>
 					
-						<form class="form-horizontal" action="/updatesponsor_bill">
+						<form class="form-horizontal" action="/updateincome_othermassage">
 							<fieldset>
 
                                 <div class="control-group">
-                                    <label class="control-label" for="sponsor_payID">账单编号</label>
+                                    <label class="control-label" for="other_payID">账单编号</label>
                                     <div class="controls">
-                                        <input class="input-xlarge focused" readonly="readonly" name="sponsor_payID" type="text" id="sponsor_payID" th:attr="value=${sponsor.sponsor_payID}"/>
+										<input class="input-xlarge focused" readonly="readonly" name="other_payID" type="text" id="other_payID" th:attr="value=${income_other.other_payID}"/>
                                     </div>
                                 </div>
 								<div class="control-group">
-									<label class="control-label" for="sponsorName">赞助商名称</label>
+									<label class="control-label" for="other_payMan">上报人员</label>
 									<div class="controls">
-										<input class="input-xlarge focused" name="sponsorName" type="text" id="sponsorName" th:attr="value=${sponsor.sponsorName}"/>
+										<input class="input-xlarge focused" name="other_payMan" type="text" id="other_payMan" th:attr="value=${income_other.other_payMan}"/>
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label" for="other_payDate">支付日期</label>
+									<div class="controls">
+										<input class="input-xlarge disabled" name="other_payDate"  id="other_payDate" type="text" th:attr="value=${income_other.other_payDate}">
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="sponsorPhone">联系电话</label>
+									<label class="control-label" for="other_payMoney">赞助金额</label>
 									<div class="controls">
-										<input class="input-xlarge focused" name="sponsorPhone" type="text" id="sponsorPhone" th:attr="value=${sponsor.sponsorPhone}" >
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label" for="sponsor_payDate">支付日期</label>
-									<div class="controls">
-										<input class="input-xlarge disabled" name="sponsor_payDate"  id="sponsor_payDate" type="text" th:attr="value=${sponsor.sponsor_payDate}">
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label" for="sponsor_payMoney">赞助金额</label>
-									<div class="controls">
-										<input class="input-xlarge focused" type="text" name="sponsor_payMoney" id="sponsor_payMoney" th:attr="value=${sponsor.sponsor_payMoney}" >
+										<input class="input-xlarge focused" type="text" name="other_payMoney" id="other_payMoney" th:attr="value=${income_other.other_payMoney}" >
 									</div>
 
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="sponsor_payRemark" placeholder="${student.studentPhone}">账单备注</label>
+									<label class="control-label" for="other_payRemark" placeholder="${student.studentPhone}">账单备注</label>
 									<div class="controls">
-										<input class="input-xlarge focused" name="sponsor_payRemark" type="text" id="sponsor_payRemark" th:attr="value=${sponsor.sponsor_payRemark}">
+										<input class="input-xlarge focused" name="other_payRemark" type="text" id="other_payRemark" th:attr="value=${income_other.other_payRemark}">
 									</div>
 								</div>
 

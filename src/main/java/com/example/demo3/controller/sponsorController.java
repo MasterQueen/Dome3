@@ -1,7 +1,7 @@
 package com.example.demo3.controller;
 
 
-import com.example.demo3.entry.Sponsor;
+import com.example.demo3.entry.income.Sponsor;
 import com.example.demo3.service.impl.Sponsor_bill_sreviceimp;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -54,11 +53,11 @@ public class sponsorController {
 
         }else {
 
-            List<Sponsor> studentList = sponsor_bill_sreviceimp.getSponsorByName(search);
+            List<Sponsor> sponsorList = sponsor_bill_sreviceimp.getSponsorByName(search);
 
-            model.addAttribute("sponsroList", studentList);
+            model.addAttribute("sponsorList", sponsorList);
 
-            PageInfo<Sponsor> pageInfo = new PageInfo<>(studentList, 5);
+            PageInfo<Sponsor> pageInfo = new PageInfo<>(sponsorList, 5);
 
             return new ModelAndView("/sponsorincome_bill.html", "pageInfo", pageInfo);
 

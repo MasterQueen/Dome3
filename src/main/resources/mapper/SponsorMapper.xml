@@ -3,21 +3,21 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo3.mapper.SponsorMapper">
 
-    <select id="getAllSponsor" resultType="com.example.demo3.entry.Sponsor">
+    <select id="getAllSponsor" resultType="com.example.demo3.entry.income.Sponsor">
         SELECT *
         FROM sponsor
         ORDER by sponsor_payID
         DESC
     </select>
 
-    <select id="getSponsorBypayID" resultType="com.example.demo3.entry.Sponsor">
+    <select id="getSponsorBypayID" resultType="com.example.demo3.entry.income.Sponsor">
         SELECT *
         FROM sponsor
         WHERE
         sponsor_payID=#{sponspor_payID}
     </select>
 
-    <select id="getSponsorByName" resultType="com.example.demo3.entry.Sponsor">
+    <select id="getSponsorByName" resultType="com.example.demo3.entry.income.Sponsor">
         SELECT *
         FROM sponsor
         WHERE
@@ -25,14 +25,14 @@
     </select>
 
     <insert id="insterSponsor" useGeneratedKeys="true" keyProperty="sponsor_payID"
-            keyColumn="sponsor_payID" parameterType="com.example.demo3.entry.Sponsor">
+            keyColumn="sponsor_payID" parameterType="com.example.demo3.entry.income.Sponsor">
         INSERT INTO
         sponsor(sponsorName, sponsorPhone, sponsor_payDate, sponsor_payMoney, sponsor_payRemark)
         VALUES
         (#{sponsorName}, #{sponsorPhone}, #{sponsor_payDate}, #{sponsor_payMoney}, #{sponsor_payRemark})
     </insert>
 
-    <update id="updateSponsorBill" parameterType="com.example.demo3.entry.Sponsor">
+    <update id="updateSponsorBill" parameterType="com.example.demo3.entry.income.Sponsor">
         UPDATE
         sponsor
         SET

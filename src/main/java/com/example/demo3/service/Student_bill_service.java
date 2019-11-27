@@ -1,6 +1,6 @@
 package com.example.demo3.service;
 
-import com.example.demo3.entry.Student;
+import com.example.demo3.entry.income.Student;
 
 import java.util.List;
 
@@ -31,14 +31,14 @@ public interface Student_bill_service {
      * @param student
      * @return
      */
-   boolean insertStudent(Student student);
+   int insertStudent(Student student);
 
     /**
      * 删除学生信息
      * @param payID
      * @return
      */
-   boolean deleteStudent(int payID);
+   int deleteStudent(int payID);
 
     /**
      * 更新学生信息

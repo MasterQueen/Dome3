@@ -1,4 +1,4 @@
-package com.example.demo3.entry;
+package com.example.demo3.entry.income;
 
 import java.io.Serializable;
 

@@ -1,6 +1,6 @@
 package com.example.demo3.service.impl;
 
-import com.example.demo3.entry.Student;
+import com.example.demo3.entry.income.Student;
 import com.example.demo3.mapper.StudentMapper;
 import com.example.demo3.service.Student_bill_service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +32,12 @@ public class Student_bill_serviceimp implements Student_bill_service {
 
    // @CachePut(value = "mycahe")
     @Override
-    public boolean insertStudent(Student student) { return studentMapper.insterStudent(student);}
+    public int insertStudent(Student student) { return studentMapper.insterStudent(student);}
 
     @Override
-    public boolean deleteStudent(int payID) {
-        return false;
+    public int deleteStudent(int payID) {
+
+        return studentMapper.delectStudentMassage(payID);
     }
 
     @Override

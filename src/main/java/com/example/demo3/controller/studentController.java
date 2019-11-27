@@ -1,7 +1,6 @@
 package com.example.demo3.controller;
 
-import com.example.demo3.entry.Student;
-import com.example.demo3.entry.User;
+import com.example.demo3.entry.income.Student;
 import com.example.demo3.service.impl.Student_bill_serviceimp;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -15,11 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.xml.crypto.Data;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.Stack;
 
 @Controller
 
@@ -152,9 +147,9 @@ public class studentController {
              student.setStudentAge(studentAge);
              student.setStudentSex(studentSex);
 
-             boolean result = student_bill_serviceimp.insertStudent(student);
+             int result = student_bill_serviceimp.insertStudent(student);
 
-            if (result){
+            if (result>0){
 
 
                return "forward:/addstudent_bill";
@@ -266,4 +261,22 @@ public class studentController {
 
        }
 
+
+       @RequestMapping(value = "delectstudent_billbypayid")
+       public String DelectStudent_billByPayID(Model model ,@RequestParam(value = "payId") Integer payId)
+       {
+           int result = student_bill_serviceimp.deleteStudent(payId);
+
+           if (result>0)
+           {
+               return "income_bill";
+           }else
+           {
+               Student student = student_bill_serviceimp.getStudentBypayiID(payId);
+
+               model.addAttribute("student",student);
+
+               return "studentbill_massage";
+           }
+       }
 }

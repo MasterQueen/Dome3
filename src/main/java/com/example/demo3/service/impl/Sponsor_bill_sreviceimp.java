@@ -1,6 +1,6 @@
 package com.example.demo3.service.impl;
 
-import com.example.demo3.entry.Sponsor;
+import com.example.demo3.entry.income.Sponsor;
 import com.example.demo3.mapper.SponsorMapper;
 import com.example.demo3.service.Sponsor_bill_service;
 import org.springframework.beans.factory.annotation.Autowired;
