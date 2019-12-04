@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>幼儿园财务管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="http://fonts.googleapis.com/css?family=Oxygen|Marck+Script" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/css/bootstrap.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/css/font-awesome.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/css/admin.css}" rel="stylesheet" type="text/css">
+
+    <!--&lt;!&ndash; Le HTML5 shim, for IE6-8 support of HTML5 elements &ndash;&gt;-->
+    <!--&lt;!&ndash;[if lt IE 9]>-->
+    <!--<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>-->
+    <!--<![endif]&ndash;&gt;-->
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="span2">
+
+            <div class="main-left-col">
+
+                <h1><i class="icon-shopping-cart icon-large"></i> Finance</h1>
+
+                <ul class="side-nav">
+
+                    <!-- 利用KinderController里的goto***()方法跳转 -->
+                    <li><a th:href="@{/gotomain}"><i class="icon-home"></i> 首页 </a></li>
+                    <li><a th:href="@{/gotobonus_bill}"><i class="icon-group"></i> 红利支出 </a></li>
+                    <li><a th:href="@{/gotosponsorincome_bill}"><i class="icon-cogs"></i> 工资支出 </a></li>
+                    <li><a th:href="@{/gotosponsorincome_bill}"><i class="icon-cogs"></i> 日常支出 </a></li>
+                    <li><a th:href="@{/gotoIncome_Other_Bill}"><i class="icon-cogs"></i> 其他收入</a></li>
+                    <li><a th:href="@{/gotohelp}"><i class="icon-info-sign"></i> 帮助 </a></li>
+                </ul>
+
+            </div> <!-- end main-left-col -->
+
+        </div> <!-- end span2 -->
+
+        <div class="span10">
+
+            <div class="secondary-masthead">
+
+                <ul class="nav nav-pills pull-right">
+                    <li>
+                        <a href="#"><i class="icon-globe"></i> View Website</a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user"></i> <font th:text="${session.username}"></font> <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/kinder_count">我的账户</a></li>
+                            <li><a th:href="@{/gotokinderupdate}">修改资料</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/login">退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#">园长</a> <span class="divider">/</span>
+                    </li>
+                    <li class="active">幼儿园财务管理系统</li>
+                </ul>
+
+            </div>
+
+            <div class="main-area dashboard">
+
+                <div class="row">
+
+                    <div class="span10">
+
+                        <div class="slate">
+
+                            <form class="form-inline" action="/gotobonus_bill">
+                                <input type="text" class="input-large" name="search" placeholder="请输入关键字进行检索">
+
+                                <select th:name="select">
+                                    <option th:value="bonus_expendDate">日期</option>
+                                    <option th:value="bonus_expendAim">分红目标</option>
+                                    <option th:value="bonus_transactor">经办人</option>
+                                </select>
+                                <button type="submit" class="btn btn-primary">查找</button>
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="span10">
+
+                        <div class="slate">
+
+                            <div class="page-header">
+                                <div class="btn-group pull-right">
+                                    <a class="btn btn-small btn-danger" th:href="@{/addbonus_bill}">添加账目</a>
+                                </div>
+                                <h2>红利列表</h2>
+                            </div>
+
+                            <table class="orders-table table">
+                                <!--<thead>-->
+                                <!--<tr>-->
+                                <!--<th>列表</th>-->
+                                <!--<th class="actions">操作</th>-->
+                                <!--</tr>-->
+                                <!--</thead>-->
+                                <tbody>
+                                <tr>
+                                    <td>账单编码</td>
+                                    <td>分红对象</td>
+                                    <td>分红金额</td>
+                                    <td>办理日期</td>
+                                </tr>
+                                <tr th:each="bonus:${bonuss}">
+                                    <!-- 加参数 -->
+                                    <td><a th:href="@{/kinderstudentinfo(stuId=${bonus.bonus_expendID})}" th:text="${bonus.bonus_expendID}"></a>
+                                    <td><a style="padding-left: -80px" th:text="${bonus.bonus_expendAim}"></a></td>
+                                    <td><a style="padding-left: -160px" th:text="${bonus.bonus_expendMoney}"></a></td>
+                                    <td><a style="padding-left: -240px" th:text="${bonus.bonus_expendDate}"></a></td>
+                                    <!--<td class="actions">-->
+                                        <!--<a class="btn btn-small btn-primary" th:href="@{/studentbill_massage(studentpayID=${student.payID})}">详细信息</a>-->
+                                        <!--<a class="btn btn-small btn-info" th:href="@{/getStudent_BillBypayID(payID=${student.payID})}">修改</a>-->
+                                    <!--</td>-->
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div>
+                    <div class="col-md-6">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination">
+                                <!--首页 和 上一页-->
+                                <li> <a th:href="@{/gotobonus_bill}" class="btn btn-sm"> 首页 </a></li>
+                                <th:if test="${pageInfo.hasPreviousPage - 1} > 0">
+                                    <li>
+                                        <a th:href="@{/gotobonus_bill(pn=${pageInfo.pageNum - 1})}" aria-label="Previous" class="btn btn-sm"  data-th-classappend="${(pageInfo.pageNum - 1) eq 0} ? 'disabled' : ''">
+                                            < </a> </li>
+                                </th:if> <!--迭代生成页码--> <li>
+                                <a th:each="i:${pageInfo.navigatepageNums}" th:href="@{/gotobonus_bill(pn=${i})}" th:text="${i}" class="btn btn-sm" data-th-classappend="${(pageInfo.pageNum) eq i} ? 'btn-info' : ''">
+                                </a> </li>
+                                <!--下一页 和 末页--> <th:if test="${pageInfo.hasNextPage }">
+                                <li> <a aria-label="Next" class="btn btn-sm" th:href="@{/gotobonus_bill(pn=${pageInfo.pageNum + 1})}" data-th-classappend="${(pageInfo.pageNum) eq (pageInfo.pages)} ? 'disabled' : ''">
+                                    > </a> </li>
+                            </th:if>
+
+                                <li> <a th:href="@{/gotobonus_bill(pn=${pageInfo.pages})}" class="btn btn-sm"> 末页 </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="span10 footer">
+
+                        <p>&copy; KMS 2018-2019</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script th:src="@{/assets/js/jquery.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/bootstrap.js}" type="text/javascript"></script>
+
+<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='utf-8'></script></div>
+</body>
+</html>
