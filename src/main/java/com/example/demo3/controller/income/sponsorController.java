@@ -1,8 +1,8 @@
-package com.example.demo3.controller;
+package com.example.demo3.controller.income;
 
 
 import com.example.demo3.entry.income.Sponsor;
-import com.example.demo3.service.impl.Sponsor_bill_sreviceimp;
+import com.example.demo3.service.impl.income.Sponsor_bill_sreviceimp;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +27,10 @@ public class sponsorController {
 
 
     @RequestMapping(value = "gotosponsorbill_massage")
-    public String  gotoSponsporbill_massage(){return "/sponsporbill_massage";}
+    public String  gotoSponsporbill_massage(){return "income/sponsporbill_massage";}
 
     @RequestMapping(value = "addsponsor_bill")
-    public String  gotoAddSponspor_bill(){return "/addsponsor_bill";}
+    public String  gotoAddSponspor_bill(){return "income/addsponsor_bill";}
 
 
     @RequestMapping(value = "gotosponsorincome_bill")
@@ -49,7 +49,7 @@ public class sponsorController {
 
             PageInfo<Sponsor> pageInfo = new PageInfo<>(sponsorList,5);
 
-            return new ModelAndView("/sponsorincome_bill.html", "pageInfo", pageInfo);
+            return new ModelAndView("income/sponsorincome_bill.html", "pageInfo", pageInfo);
 
         }else {
 
@@ -59,7 +59,7 @@ public class sponsorController {
 
             PageInfo<Sponsor> pageInfo = new PageInfo<>(sponsorList, 5);
 
-            return new ModelAndView("/sponsorincome_bill.html", "pageInfo", pageInfo);
+            return new ModelAndView("income/sponsorincome_bill.html", "pageInfo", pageInfo);
 
         }
 
@@ -82,7 +82,7 @@ public class sponsorController {
         {
             model.addAttribute("msg1","请输入所有信息");
 
-            return "/addsponsor_bill.html";
+            return "income/addsponsor_bill.html";
         }
 
 
@@ -105,13 +105,13 @@ public class sponsorController {
 
         if (result){
 
-            return "forward:/addsponsor_bill";
+            return "forward:income/addsponsor_bill";
 
         }else{
 
             model.addAttribute("msg2","插入失败");
 
-            return "/addsponsor_bill";
+            return "income/addsponsor_bill";
         }
 
     }
@@ -133,11 +133,11 @@ public class sponsorController {
 
         if (search.equals("1"))
         {
-            return "/sponsorbill_massage";
+            return "income/sponsorbill_massage";
         }else
 
         {
-            return "/updatesponsor_bill";
+            return "income/updatesponsor_bill";
         }
     }
 

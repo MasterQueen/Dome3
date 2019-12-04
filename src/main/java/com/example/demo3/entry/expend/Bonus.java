@@ -7,9 +7,9 @@ import java.util.Date;
 public class Bonus implements Serializable {
 
 
-    private Date bonus_expendDate;
+    private String bonus_expendDate;
     private String bonus_expendAim;
-    private BigInteger bonus_expendMoney;
+    private int bonus_expendMoney;
     private int bonus_expendID;
     private String bonus_expendRemark;
     private String bonus_transactor;
@@ -26,11 +26,11 @@ public class Bonus implements Serializable {
                 '}';
     }
 
-    public Date getBonus_expendDate() {
+    public String getBonus_expendDate() {
         return bonus_expendDate;
     }
 
-    public void setBonus_expendDate(Date bonus_expendDate) {
+    public void setBonus_expendDate(String bonus_expendDate) {
         this.bonus_expendDate = bonus_expendDate;
     }
 
@@ -42,11 +42,11 @@ public class Bonus implements Serializable {
         this.bonus_expendAim = bonus_expendAim;
     }
 
-    public BigInteger getBonus_expendMoney() {
+    public  int  getBonus_expendMoney() {
         return bonus_expendMoney;
     }
 
-    public void setBonus_expendMoney(BigInteger bonus_expendMoney) {
+    public void setBonus_expendMoney( int  bonus_expendMoney) {
         this.bonus_expendMoney = bonus_expendMoney;
     }
 

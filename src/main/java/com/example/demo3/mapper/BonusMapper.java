@@ -14,7 +14,7 @@ public interface BonusMapper {
      * 获取所有Bonus信息
      * @return
      */
-    List getAllBonus();
+    List <Bonus>getAllBonus();
 
     /**
      *
@@ -25,11 +25,11 @@ public interface BonusMapper {
     List<Map<String,Object>> getBonusBy(Map bonus);
 
     /**
-     * 根据分红目标对象获取Bonus
+     * 根据传值获取信息
      * @param bonus
      * @return
      */
-    List getBonus(Bonus bonus);
+    List <Bonus>getBonus(Bonus bonus);
 
     /**
      * 根据办理人获取Bonus

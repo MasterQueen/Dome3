@@ -18,12 +18,12 @@ public class Bonus_bill_serviceimp implements Bonus_bill_service {
 
 
     @Override
-    public List getAllBonus() {
-        return null;
+    public List<Bonus> getAllBonus() {
+        return bonusMapper.getAllBonus();
     }
 
     @Override
-    public List getBonus(Bonus bonus) {
+    public List<Bonus> getBonus(Bonus bonus) {
         return bonusMapper.getBonus(bonus);
     }
 
@@ -54,6 +54,6 @@ public class Bonus_bill_serviceimp implements Bonus_bill_service {
 
     @Override
     public int insertBonus(Bonus bonus) {
-        return 0;
+        return bonusMapper.insertBonus(bonus);
     }
 }

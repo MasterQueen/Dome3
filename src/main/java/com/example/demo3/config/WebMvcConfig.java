@@ -51,29 +51,35 @@ WebMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/").setViewName("login");
         registry.addViewController("/login.html").setViewName("login");
         registry.addViewController("/main.html").setViewName("main");
-        registry.addViewController("/income_bill.html").setViewName("income_bill");
-        registry.addViewController("/addstudent_bill.html").setViewName("addstudent_bill");
-        registry.addViewController("/addstudent_billaction.html").setViewName("addstudent_billaction");
-        registry.addViewController("/studentbill_massage.html").setViewName("studentbill_massage");
-        registry.addViewController("/updatestudent_bill.html").setViewName("updatestudent_bill");
+        registry.addViewController("income/income_bill.html").setViewName("income_bill");
+        registry.addViewController("income/addstudent_bill.html").setViewName("addstudent_bill");
+        registry.addViewController("income/addstudent_billaction.html").setViewName("addstudent_billaction");
+        registry.addViewController("income/studentbill_massage.html").setViewName("studentbill_massage");
+        registry.addViewController("income/updatestudent_bill.html").setViewName("updatestudent_bill");
 
 
         registry.addViewController("/expend_bill.html").setViewName("expend_bill");
         registry.addViewController("/user_massage.html").setViewName("user_massage");
         registry.addViewController("/help.html").setViewName("help");
 
-        registry.addViewController("/addsponsor_bill.html").setViewName("addsponsor_bill");
-        registry.addViewController("/sponsorbill_massage.html").setViewName("sponsorbill_massage");
-        registry.addViewController("/updatesponsor_bill.html").setViewName("updatesponsor_bill");
-        registry.addViewController("/sponsorincome_bill.html").setViewName("sponsorincome_bill");
 
-        registry.addViewController("/otherincome_bill.html").setViewName("otherincome_bill");
-        registry.addViewController("/addother_income_bill.html").setViewName("addother_income_bill");
-        registry.addViewController("/other_incomebill_massage.html").setViewName("other_incomebill_massage");
-        registry.addViewController("/updateotherincome_bill.html").setViewName("updateotherincome_bill");
+        //赞助收入
+        registry.addViewController("income/addsponsor_bill.html").setViewName("addsponsor_bill");
+        registry.addViewController("income/sponsorbill_massage.html").setViewName("sponsorbill_massage");
+        registry.addViewController("income/updatesponsor_bill.html").setViewName("updatesponsor_bill");
+        registry.addViewController("income/sponsorincome_bill.html").setViewName("sponsorincome_bill");
+
+        //其他收入
+        registry.addViewController("income/otherincome_bill.html").setViewName("otherincome_bill");
+        registry.addViewController("income/addother_income_bill.html").setViewName("addother_income_bill");
+        registry.addViewController("income/other_incomebill_massage.html").setViewName("other_incomebill_massage");
+        registry.addViewController("income/updateotherincome_bill.html").setViewName("updateotherincome_bill");
 
 
-
+        //红利支出
+        registry.addViewController("expend/bonus_bill.html").setViewName("bonus_bill");
+        registry.addViewController("expend/addbonus_bill.html").setViewName("addbonus_bill");
+        registry.addViewController("expend/bonusbill_massage.html").setViewName("bonusbill_massage");
 
     }
 }

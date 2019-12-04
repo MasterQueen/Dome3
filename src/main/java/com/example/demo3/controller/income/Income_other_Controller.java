@@ -1,4 +1,4 @@
-package com.example.demo3.controller;
+package com.example.demo3.controller.income;
 
 
 import com.example.demo3.entry.income.Income_Other;
@@ -24,7 +24,7 @@ public class Income_other_Controller {
 
 
     @RequestMapping(value = "addother_income_bill")
-    public String  gotoAddOther_income_bill(){return "/addother_income_bill";}
+    public String  gotoAddOther_income_bill(){return "income/addother_income_bill";}
 
 
     @RequestMapping(value ="gotoIncome_Other_Bill")
@@ -42,7 +42,7 @@ public class Income_other_Controller {
 
             PageInfo<Income_Other> pageInfo = new PageInfo<>(income_otherList,5);
 
-            return new ModelAndView("otherincome_bill.html", "pageInfo", pageInfo);
+            return new ModelAndView("income/otherincome_bill.html", "pageInfo", pageInfo);
         }else
 
         {
@@ -52,7 +52,7 @@ public class Income_other_Controller {
 
             PageInfo<Income_Other> pageInfo = new PageInfo<>(income_otherList,5);
 
-            return new ModelAndView("otherincome_bill","pageInfo", pageInfo);
+            return new ModelAndView("income/otherincome_bill","pageInfo", pageInfo);
 
         }
 
@@ -73,14 +73,14 @@ public class Income_other_Controller {
         {
             model.addAttribute("msg1","请输入所有信息");
 
-            return "/addother_income_bill.html";
+            return "income/addother_income_bill.html";
         }
 
         if (other_payRemark.length()>=20)
         {
             model.addAttribute("msg4","备注信息请在20字以内");
 
-            return "/addother_income_bill.html";
+            return "income/addother_income_bill.html";
         }
 
         Income_Other income_other = new Income_Other();
@@ -96,12 +96,12 @@ public class Income_other_Controller {
         {
             model.addAttribute("msg2","添加失败");
 
-            return "/addother_income_bill.html";
+            return "income/addother_income_bill.html";
         }else
         {
             model.addAttribute("msg2","添加成功");
 
-            return "/addother_income_bill.html";
+            return "income/addother_income_bill.html";
         }
 
 
@@ -123,13 +123,13 @@ public class Income_other_Controller {
         if (search.equals("1"))
         {
 
-            return "other_incomebill_massage";
+            return "income/other_incomebill_massage";
 
         }else
 
         {
 
-            return "updateotherincome_bill";
+            return "income/updateotherincome_bill";
         }
     }
 
@@ -150,14 +150,14 @@ public class Income_other_Controller {
         {
             model.addAttribute("msg1","请输入所有信息");
 
-            return "/updateotherincome_bill.html";
+            return "income/updateotherincome_bill.html";
         }
 
         if (other_payRemark.length()>=20)
         {
             model.addAttribute("msg3","备注信息请在20字以内");
 
-            return "/updateotherincome_bill.html";
+            return "income/updateotherincome_bill.html";
         }
 
         Income_Other income_other = new Income_Other();
@@ -174,7 +174,7 @@ public class Income_other_Controller {
         {
             model.addAttribute("msg2","更新失败");
 
-            return "/updateotherincome_bill.html";
+            return "income/updateotherincome_bill.html";
         }else
 
         {
@@ -182,7 +182,7 @@ public class Income_other_Controller {
 
             model.addAttribute("income_other",income_other);
 
-            return "/updateotherincome_bill.html";
+            return "income/updateotherincome_bill.html";
         }
     }
 }

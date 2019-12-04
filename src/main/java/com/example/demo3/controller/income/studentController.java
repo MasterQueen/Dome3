@@ -1,7 +1,7 @@
-package com.example.demo3.controller;
+package com.example.demo3.controller.income;
 
 import com.example.demo3.entry.income.Student;
-import com.example.demo3.service.impl.Student_bill_serviceimp;
+import com.example.demo3.service.impl.income.Student_bill_serviceimp;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,10 +28,10 @@ public class studentController {
 
 
      @RequestMapping(value = "addstudent_bill")
-     public String goutoAddStudent_Bill(){return "/addstudent_bill";}
+     public String goutoAddStudent_Bill(){return "income/addstudent_bill";}
 
     @RequestMapping(value = "goutostudnetbill_massage")
-    public String GoutoStudentBill_Massage(){return "/studentbill_massage";}
+    public String GoutoStudentBill_Massage(){return "income/studentbill_massage";}
 
 
     /**
@@ -63,7 +64,7 @@ public class studentController {
 
              PageInfo<Student> pageInfo = new PageInfo<>(studentList, 5);
 
-             return new ModelAndView("/income_bill.html", "pageInfo", pageInfo);
+             return new ModelAndView("income/income_bill.html", "pageInfo", pageInfo);
 
          } else {
 
@@ -74,7 +75,7 @@ public class studentController {
 
              PageInfo<Student> pageInfo = new PageInfo<>(studentList, 5);
 
-             return new ModelAndView("/income_bill.html", "pageInfo", pageInfo);
+             return new ModelAndView("income/income_bill.html", "pageInfo", pageInfo);
          }
 
 
@@ -125,7 +126,7 @@ public class studentController {
              System.out.println("kongde");
              model.addAttribute("msg1","请输入所有信息");
 
-             return "/addstudent_bill.html";
+             return "income/addstudent_bill.html";
 
          }else{
 
@@ -151,14 +152,15 @@ public class studentController {
 
             if (result>0){
 
+                model.addAttribute("msg2","插入成功");
 
-               return "forward:/addstudent_bill";
+               return "income/addstudent_bill.html";
 
             }else{
 
                 model.addAttribute("msg2","插入失败");
 
-                return "/addstudent_bill";
+                return "income/addstudent_bill.html";
             }
 
 
@@ -175,20 +177,28 @@ public class studentController {
      * @return
      */
      @RequestMapping(value = "/studentbill_massage",method = {RequestMethod.POST, RequestMethod.GET})
-       public String StudnetBill_Massage(Model model,HttpServletRequest httpServletRequest , HttpSession httpSession){
+       private String StudnetBill_Massage(Model model,HttpServletRequest httpServletRequest , HttpSession httpSession){
 
-        String studentpayID = httpServletRequest.getParameter("studentpayID");
+        String studentpayID = httpServletRequest.getParameter("payID");
 
+        String search = httpServletRequest.getParameter("search");
 
         int payID = Integer.parseInt(studentpayID);
         Student student = student_bill_serviceimp.getStudentBypayiID(payID);
 
-        System.out.println(student);
+
 
         model.addAttribute("student",student);
 
+        if (search=="1")
+        {
+            return  "income/studentbill_massage";
+        }else
+        {
+            return  "income/updatestudent_bill";
+        }
 
-         return  "/studentbill_massage";
+
        }
 
 
@@ -217,10 +227,25 @@ public class studentController {
 
            //空值判断
            if (payID_String.equals("")||studentAge_String.equals("")||studentPhone_String.equals("")||payMoney_String.equals("")||studentName.equals("")||studentSex.equals("")||studentParents.equals("")||payDate.equals("")||payMan.equals("")||payRemark.equals("")) {
-               System.out.println("kongde");
+
                model.addAttribute("msg1","请输入所有信息");
 
-               return "/updatestudent_bill.html";
+               Student student = new Student();
+
+               student.setStudentSex(studentSex);
+               student.setStudentParents(studentParents);
+               student.setStudentPhone(Integer.parseInt(studentPhone_String));
+               student.setPayRemark(payRemark);
+               student.setPayMoney(Integer.parseInt(payMoney_String));
+               student.setPayDate(payDate);
+               student.setPayMan(payMan);
+               student.setPayID(Integer.parseInt(payID_String));
+               student.setStudentName(studentName);
+               student.setStudentAge(Integer.parseInt(studentAge_String));
+               model.addAttribute("student",student);
+
+               return "income/updatestudent_bill.html";
+
            }else {
 
                int studentAge = Integer.parseInt(studentAge_String);
@@ -248,13 +273,13 @@ public class studentController {
                {
                    model.addAttribute("msg2","修改失败");
 
-                   return "/updatestudent_bill.html";
+                   return "income/updatestudent_bill.html";
                }else {
 
                    model.addAttribute("msg3","修改成功");
                    model.addAttribute("student",student);
 
-                  return "/updatestudent_bill.html";
+                  return "income/updatestudent_bill.html";
 
                }
            }

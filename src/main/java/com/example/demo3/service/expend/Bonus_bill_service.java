@@ -1,7 +1,9 @@
 package com.example.demo3.service.expend;
 
 import com.example.demo3.entry.expend.Bonus;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.beans.Transient;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +13,7 @@ public interface Bonus_bill_service {
      * 获取所有Bonus信息
      * @return
      */
-    List getAllBonus();
+    List <Bonus>getAllBonus();
 
     /**
      *
@@ -19,7 +21,7 @@ public interface Bonus_bill_service {
      * @param
      * @return
      */
-    List getBonus(Bonus bonus);
+    List <Bonus>getBonus(Bonus bonus);
 
     /**
      * 根据分红目标对象获取Bonus
@@ -61,6 +63,7 @@ public interface Bonus_bill_service {
      * @param bonus
      * @return
      */
+
     int insertBonus(Bonus bonus);
 
 

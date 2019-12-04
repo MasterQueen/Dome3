@@ -1,4 +1,4 @@
-package com.example.demo3.service.impl;
+package com.example.demo3.service.impl.income;
 
 import com.example.demo3.entry.User;
 import com.example.demo3.mapper.UserMapper;

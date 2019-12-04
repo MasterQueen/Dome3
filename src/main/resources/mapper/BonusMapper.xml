@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.demo3.mapper.Income_OtherMapper">
+<mapper namespace="com.example.demo3.mapper.BonusMapper">
 
 
     <sql id="Base_ALL">
-        bonus_expendID,bonus_expendMoney,bonus_expebdDate,bonus_expendAim,bonus_expendRemark,bonus_transactor
+        bonus_expendID,bonus_expendMoney,bonus_expendDate,bonus_expendAim,bonus_expendRemark,bonus_transactor
     </sql>
 
     <select id="getAllBonus" resultType="com.example.demo3.entry.expend.Bonus">
@@ -14,7 +14,7 @@
         SELECT
         <include refid="Base_ALL"/>
         FROM bonus
-        ORDER bonus_expendID DESC ;
+        ORDER by bonus_expendID DESC
     </select>
 
     <select id="getBonus" resultType="com.example.demo3.entry.expend.Bonus" parameterType="java.util.HashMap">
@@ -45,5 +45,14 @@
         </trim>
 
     </select>
+
+    <insert id="insertBonus" useGeneratedKeys="true" keyProperty="bonus_expendID"
+            keyColumn="bonus_expendID" parameterType="com.example.demo3.entry.expend.Bonus">
+     INSERT  INTO
+    bonus (bonus_expendMoney, bonus_expendDate, bonus_expendAim, bonus_expendRemark, bonus_transactor)
+     VALUES
+     (#{bonus_expendMoney},#{bonus_expendDate},#{bonus_expendAim},#{bonus_expendRemark},#{bonus_transactor})
+
+    </insert>
 
 </mapper>
