@@ -142,4 +142,77 @@ public class bonusController {
 
       }
 
+
+    /**
+     * 2019/12/4
+     * 详细信息，修改信息获取资源
+     * @param model
+     * @param httpServletRequest
+     * @return
+     */
+      @RequestMapping(value = "bonusbill_massage",method =RequestMethod.GET)
+      public String bonus_BillMassage( Model model ,HttpServletRequest httpServletRequest)
+      {
+
+          String search = httpServletRequest.getParameter("search");
+
+          String bonus_expendID = httpServletRequest.getParameter("bonus_expendID");
+
+          Bonus bonus = bonus_bill_service.getBonusById(Integer.valueOf(bonus_expendID));
+
+          model.addAttribute("bonus",bonus);
+
+          if(search.equals("1"))
+          {
+
+              return "expend/bonusbill_massage";
+          }else {
+
+              return "expend/updatebonus_bill";
+          }
+
+
+      }
+
+      @RequestMapping(value = "updatebonus_massage" ,method =RequestMethod.GET)
+      public String updateBonus_bill(Model model ,HttpServletRequest httpServletRequest)
+      {
+
+          String  bonus_expendMoney_String = httpServletRequest.getParameter("bonus_expendMoney");
+          String  bonus_expendDate = httpServletRequest.getParameter("bonus_expendDate");
+          String  bonus_expendAim = httpServletRequest.getParameter("bonus_expendAim");
+          String  bonus_expendRemark = httpServletRequest.getParameter("bonus_expendRemark");
+          String  bonus_transactor = httpServletRequest.getParameter("bonus_transactor");
+          String  bonus_expendID = httpServletRequest.getParameter("bonus_expendID");
+          if (bonus_expendAim.equals("")||bonus_expendDate.equals("")||bonus_expendMoney_String.equals("")||bonus_expendRemark.equals("")||bonus_transactor.equals(""))
+          {
+              model.addAttribute("msg1","请输入所有信息");
+
+              return "expend/updatebonus_bill.html";
+          }
+          Bonus bonus =  new Bonus();
+          bonus.setBonus_expendID(Integer.valueOf(bonus_expendID));
+          bonus.setBonus_transactor(bonus_transactor);
+          bonus.setBonus_expendAim(bonus_expendAim);
+          bonus.setBonus_expendDate(bonus_expendDate);
+          bonus.setBonus_expendRemark(bonus_expendRemark);
+          bonus.setBonus_expendMoney(Integer.valueOf(bonus_expendMoney_String));
+          int result  = bonus_bill_service.updateBonus(bonus);
+
+          if (result>0)
+          {
+
+              model.addAttribute("msg1","修改成功");
+              model.addAttribute("bonus",bonus);
+              return "expend/updatebonus_bill";
+          }else
+          {
+              model.addAttribute("msg2","修改失败");
+              return "expend/updatebonus_bill";
+          }
+
+
+
+      }
+
 }

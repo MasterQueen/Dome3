@@ -37,7 +37,7 @@
                     <!-- 利用KinderController里的goto***()方法跳转 -->
                     <li><a th:href="@{/gotomain}"><i class="icon-home"></i> 首页 </a></li>
                     <li><a th:href="@{/gotobonus_bill}"><i class="icon-group"></i> 红利支出 </a></li>
-                    <li><a th:href="@{/gotosponsorincome_bill}"><i class="icon-cogs"></i> 工资支出 </a></li>
+                    <li><a th:href="@{/gotosalary_bill}"><i class="icon-cogs"></i> 工资支出 </a></li>
                     <li><a th:href="@{/gotosponsorincome_bill}"><i class="icon-cogs"></i> 日常支出 </a></li>
                     <li><a th:href="@{/gotoIncome_Other_Bill}"><i class="icon-cogs"></i> 其他收入</a></li>
                     <li><a th:href="@{/gotohelp}"><i class="icon-info-sign"></i> 帮助 </a></li>
@@ -86,7 +86,7 @@
                             <h2>详细记录</h2>
                         </div>
 
-                        <form class="form-horizontal" action="/addstudent_billaction">
+                        <form class="form-horizontal" action="/addbonus_bill">
                             <fieldset>
 
                                 <div class="control-group">
@@ -128,9 +128,9 @@
                             </fieldset>
                             <div class="span10 " style="padding-left: 650px">
 
-                                <button type="submit" class="btn btn-info" >添加</button>
+                                <button type="submit" class="btn btn-info" >添加账单</button>
                                 <!--onclick="clearinput();"-->
-                                <button type="reset" class="btn btn-success" >清空</button>
+                                <!--<button type="reset" class="btn btn-success" >清空</button>-->
                             </div>
                         </form>
 

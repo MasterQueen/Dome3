@@ -17,6 +17,14 @@
         ORDER by bonus_expendID DESC
     </select>
 
+    <select id="getBonusByID" resultType="com.example.demo3.entry.expend.Bonus">
+
+        SELECT
+        <include refid="Base_ALL"/>
+        FROM bonus
+        WHERE  bonus_expendID = #{bonus_expendID}
+    </select>
+
     <select id="getBonus" resultType="com.example.demo3.entry.expend.Bonus" parameterType="java.util.HashMap">
         SELECT
         <include refid="Base_ALL"/>
@@ -54,5 +62,18 @@
      (#{bonus_expendMoney},#{bonus_expendDate},#{bonus_expendAim},#{bonus_expendRemark},#{bonus_transactor})
 
     </insert>
+
+    <update id="updateBonus" parameterType="com.example.demo3.entry.expend.Bonus">
+       UPDATE
+       bonus
+        SET
+        bonus_expendAim = #{bonus_expendAim},
+        bonus_expendDate = #{bonus_expendDate},
+        bonus_expendMoney = #{bonus_expendMoney},
+        bonus_expendRemark = #{bonus_expendRemark},
+        bonus_transactor = #{bonus_transactor}
+        WHERE
+        bonus_expendID= #{bonus_expendID}
+    </update>
 
 </mapper>

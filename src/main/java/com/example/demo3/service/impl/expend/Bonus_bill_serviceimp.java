@@ -28,6 +28,11 @@ public class Bonus_bill_serviceimp implements Bonus_bill_service {
     }
 
     @Override
+    public Bonus getBonusById(Integer bonus_expendID) {
+        return bonusMapper.getBonusByID(bonus_expendID);
+    }
+
+    @Override
     public List getBonusByBonus_expendAim(String bonus_expendAim) {
         return null;
     }
@@ -49,7 +54,7 @@ public class Bonus_bill_serviceimp implements Bonus_bill_service {
 
     @Override
     public int updateBonus(Bonus bonus) {
-        return 0;
+        return bonusMapper.updateBonus(bonus);
     }
 
     @Override

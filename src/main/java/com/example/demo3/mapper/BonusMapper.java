@@ -32,6 +32,13 @@ public interface BonusMapper {
     List <Bonus>getBonus(Bonus bonus);
 
     /**
+     * 根据ID获取bonus
+     * @param bonus_expendID
+     * @return
+     */
+    Bonus getBonusByID(Integer bonus_expendID);
+
+    /**
      * 根据办理人获取Bonus
      * @param bonus_transactor
      * @return

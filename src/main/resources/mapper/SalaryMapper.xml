@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo3.mapper.SalaryMapper">
+
+    <sql id="Base_All">
+        salary_expendID,salary_expendMoney,salary_expendDate,salary_expendAim,salary_expendRemark,salary_transactor
+    </sql>
+
+    
+    <select id="getAllSalary_Bill" resultType="com.example.demo3.entry.expend.Salary">
+        SELECT
+        <include refid="Base_All"/>
+        FROM salary
+        ORDER by salary_expendID
+        DESC 
+    </select>
+
+    <select id="getSalary_BillByID" resultType="com.example.demo3.entry.expend.Salary">
+        SELECT
+        <include refid="Base_All"/>
+        FROM salary
+        WHERE  salary_expendID = #{salary_expendID}
+    </select>
+
+    <update id="updateSalary_BillByID" >
+        UPDATE salary
+        SET
+        salary_expendAim = #{salary_expendAim},
+        salary_expendMoney = #{salary_expendMoney},
+        salary_expendDate = #{salary_expendDate},
+        salary_expendRemark = #{salary_expendRemark},
+        salary_transactor = #{salary_transactor}
+        WHERE
+        salary_expendID = #{salary_expendID}
+
+    </update>
+
+    <insert id="insertSalary_Bill" useGeneratedKeys="true" keyProperty="salary_expendID"
+            keyColumn="salary_expendID" parameterType="com.example.demo3.entry.expend.Salary">
+        INSERT INTO
+       salary(salary_expendMoney, salary_expendDate, salary_expendAim, salary_expendRemark, salary_transactor)
+        VALUES
+        (#{salary_expendMoney},#{salary_expendDate},#{salary_expendAim},#{salary_expendRemark},#{salary_transactor})
+    </insert>
+
+    <select id="getSalary_Bill"  parameterType="com.example.demo3.entry.expend.Salary" resultType="com.example.demo3.entry.expend.Salary">
+      SELECT
+      <include refid="Base_All"/>
+      FROM salary
+
+        <trim prefix="where" prefixOverrides="and">
+            <choose>
+                <when test="salary_expendID!=null and salary_expendID != ''">
+                    AND salary_expendID = #{salary_expendID}
+                </when>
+
+                <when test="salary_expendDate!=null and salary_expendDate !=''">
+                    AND salary_expendDate = #{salary_expendDate}
+                </when>
+
+                <when test="salary_expendAim!=null and salary_expendAim!=''">
+                    AND salary_expendAim = #{salary_expendAim}
+                </when>
+
+                <when test="salary_transactor!=null and salary_transactor!=''">
+
+                    AND  salary_transactor = #{salary_transactor}
+                </when>
+
+            </choose>
+        </trim>
+
+
+    </select>
+    
+</mapper>

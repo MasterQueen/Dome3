@@ -24,6 +24,12 @@ public interface Bonus_bill_service {
     List <Bonus>getBonus(Bonus bonus);
 
     /**
+     * 根据ID获取bonus
+     * @param bonus_expendID
+     * @return
+     */
+    Bonus getBonusById(Integer bonus_expendID);
+    /**
      * 根据分红目标对象获取Bonus
      * @param bonus_expendAim
      * @return
