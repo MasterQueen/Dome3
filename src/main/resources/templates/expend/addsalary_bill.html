@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>幼儿园财务管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="http://fonts.googleapis.com/css?family=Oxygen|Marck+Script" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/css/bootstrap.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/css/font-awesome.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/assets/css/admin.css}" rel="stylesheet" type="text/css">
+
+    <!--&lt;!&ndash; Le HTML5 shim, for IE6-8 support of HTML5 elements &ndash;&gt;-->
+    <!--&lt;!&ndash;[if lt IE 9]>-->
+    <!--<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>-->
+    <!--<![endif]&ndash;&gt;-->
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="span2">
+
+            <div class="main-left-col">
+
+                <h1><i class="icon-shopping-cart icon-large"></i> Finance</h1>
+
+                <ul class="side-nav">
+
+                    <!-- 利用KinderController里的goto***()方法跳转 -->
+                    <li><a th:href="@{/gotomain}"><i class="icon-home"></i> 首页 </a></li>
+                    <li><a th:href="@{/gotobonus_bill}"><i class="icon-group"></i> 红利支出 </a></li>
+                    <li><a th:href="@{/gotosalary_bill}"><i class="icon-cogs"></i> 工资支出 </a></li>
+                    <li><a th:href="@{/gotosponsorincome_bill}"><i class="icon-cogs"></i> 日常支出 </a></li>
+                    <li><a th:href="@{/gotoIncome_Other_Bill}"><i class="icon-cogs"></i> 其他支出</a></li>
+                    <li><a th:href="@{/gotohelp}"><i class="icon-info-sign"></i> 帮助 </a></li>
+                </ul>
+
+            </div> <!-- end main-left-col -->
+
+        </div> <!-- end span2 -->
+
+        <div class="span10">
+
+            <div class="secondary-masthead">
+
+                <ul class="nav nav-pills pull-right">
+                    <li>
+                        <a href="#"><i class="icon-globe"></i> View Website</a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user"></i> <font th:text="${session.username}"></font> <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/kinder_account">我的账户</a></li>
+                            <li><a th:href="@{/gotokinderupdate}">修改资料</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/login">退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#">园长</a> <span class="divider">/</span>
+                    </li>
+                    <li class="active">幼儿园财务管理系统</li>
+                </ul>
+
+            </div>
+
+            <div class="main-area dashboard">
+
+                <div class="span10" style="padding-top:30px">
+
+                    <div id="sss" class="slate">
+
+                        <div class="page-header">
+                            <h2>新增收款记录</h2>
+                        </div>
+
+                        <form class="form-horizontal" action="/addsalary_billAction" >
+                            <fieldset>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="salary_expendAim">支出目标</label>
+                                    <div class="controls">
+                                        <input class="input-xlarge focused" name="salary_expendAim" type="text" id="salary_expendAim"/>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="salary_expendMoney">支出金额</label>
+                                    <div class="controls">
+                                        <input class="input-xlarge focused" name="salary_expendMoney" type="text" id="salary_expendMoney" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">办理日期</label>
+                                    <div class="controls">
+                                        <input class="input-xlarge focused" name="salary_expendDate" type="date" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="salary_transactor">办理人</label>
+                                    <div class="controls">
+                                        <input class="input-xlarge focused" type="text" name="salary_transactor" id="salary_transactor">
+                                    </div>
+                                    <!--<div style="padding-top:30px; padding-left: 150px">-->
+                                    <!--<p style="color: red" th:text="${info}" th:if="${not #strings.isEmpty(info)}"></p>-->
+                                    <!--</div>-->
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="salary_expendRemark">备注</label>
+                                    <div class="controls">
+                                        <input class="input-xlarge focused" name="salary_expendRemark" type="text" id="salary_expendRemark">
+                                    </div>
+                                </div>
+
+
+                                <p style="color: red" th:text="${msg1}" th:if="${not #strings.isEmpty(msg1)}"></p>
+                                <p style="color: red" th:text="${msg2}" th:if="${not #strings.isEmpty(msg2)}"></p>
+                                <p style="color: red" th:text="${msg3}" th:if="${not #strings.isEmpty(msg3)}"></p>
+                                <p style="color: red" th:text="${msg4}" th:if="${not #strings.isEmpty(msg4)}"></p>
+                            </fieldset>
+                            <div class="span10 " style="padding-left: 650px">
+
+                                <button type="submit" class="btn btn-info" >添加</button>
+                                <!--onclick="clearinput();"-->
+                                <button type="reset" class="btn btn-success" >清空</button>
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="span10 footer">
+
+                    <p>&copy; KMS 2018-2019</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div> <!-- end span10 -->
+
+</div> <!-- end row -->
+
+</div> <!-- end container -->
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script th:src="@{/assets/js/jquery.min.js}" type="text/javascript"></script>
+<script th:src="@{/assets/js/bootstrap.js}" type="text/javascript"></script>
+
+<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='utf-8'></script></div>
+</body>
+</html>

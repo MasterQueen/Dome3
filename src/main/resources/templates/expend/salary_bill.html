@@ -93,6 +93,7 @@
                                     <option th:value="salary_transactor">经办人</option>
                                 </select>
                                 <button type="submit" class="btn btn-primary">查找</button>
+                                <p style="color: red" th:text="${msg1}" th:if="${not #strings.isEmpty(msg1)}"></p>
                             </form>
 
                         </div>
@@ -153,20 +154,20 @@
                         <nav aria-label="Page navigation">
                             <ul class="pagination">
                                 <!--首页 和 上一页-->
-                                <li> <a th:href="@{/gotobonus_bill}" class="btn btn-sm"> 首页 </a></li>
+                                <li> <a th:href="@{/gotosalary_bill}" class="btn btn-sm"> 首页 </a></li>
                                 <th:if test="${pageInfo.hasPreviousPage - 1} > 0">
                                     <li>
-                                        <a th:href="@{/gotobonus_bill(pn=${pageInfo.pageNum - 1})}" aria-label="Previous" class="btn btn-sm"  data-th-classappend="${(pageInfo.pageNum - 1) eq 0} ? 'disabled' : ''">
+                                        <a th:href="@{/gotosalary_bill(pn=${pageInfo.pageNum - 1})}" aria-label="Previous" class="btn btn-sm"  data-th-classappend="${(pageInfo.pageNum - 1) eq 0} ? 'disabled' : ''">
                                             < </a> </li>
                                 </th:if> <!--迭代生成页码--> <li>
-                                <a th:each="i:${pageInfo.navigatepageNums}" th:href="@{/gotobonus_bill(pn=${i})}" th:text="${i}" class="btn btn-sm" data-th-classappend="${(pageInfo.pageNum) eq i} ? 'btn-info' : ''">
+                                <a th:each="i:${pageInfo.navigatepageNums}" th:href="@{/gotosalary_bill(pn=${i})}" th:text="${i}" class="btn btn-sm" data-th-classappend="${(pageInfo.pageNum) eq i} ? 'btn-info' : ''">
                                 </a> </li>
                                 <!--下一页 和 末页--> <th:if test="${pageInfo.hasNextPage }">
-                                <li> <a aria-label="Next" class="btn btn-sm" th:href="@{/gotobonus_bill(pn=${pageInfo.pageNum + 1})}" data-th-classappend="${(pageInfo.pageNum) eq (pageInfo.pages)} ? 'disabled' : ''">
+                                <li> <a aria-label="Next" class="btn btn-sm" th:href="@{/gotosalary_bill(pn=${pageInfo.pageNum + 1})}" data-th-classappend="${(pageInfo.pageNum) eq (pageInfo.pages)} ? 'disabled' : ''">
                                     > </a> </li>
                             </th:if>
 
-                                <li> <a th:href="@{/gotobonus_bill(pn=${pageInfo.pages})}" class="btn btn-sm"> 末页 </a>
+                                <li> <a th:href="@{/gotosalary_bill(pn=${pageInfo.pages})}" class="btn btn-sm"> 末页 </a>
                                 </li>
                             </ul>
                         </nav>
