@@ -87,5 +87,12 @@ WebMvcConfig implements WebMvcConfigurer {
         registry.addViewController("expend/addsalary_bill.html").setViewName("addsalary_bill");
         registry.addViewController("expend/salarybill_massage.html").setViewName("salarybill_massage");
         registry.addViewController("expend/updatesalary_bill.html").setViewName("updatesalary_bill");
+
+        //其他支出
+        registry.addViewController("expend/other_expend_bill.html").setViewName("other_expend_bill");
+        registry.addViewController("expend/addother_expend.html").setViewName("addother_expend");
+        registry.addViewController("expend/other_expendbill_massage.html").setViewName("other_expendbill_massage");
+        registry.addViewController("expend/update_other_expend_bill.html").setViewName("update_other_expend_bill");
+
     }
 }

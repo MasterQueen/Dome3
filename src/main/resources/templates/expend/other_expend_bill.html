@@ -38,7 +38,7 @@
                     <li><a th:href="@{/gotomain}"><i class="icon-home"></i> 首页 </a></li>
                     <li><a th:href="@{/gotobonus_bill}"><i class="icon-group"></i> 红利支出 </a></li>
                     <li><a th:href="@{/gotosalary_bill}"><i class="icon-cogs"></i> 工资支出 </a></li>
-                    <li><a th:href="@{/gotoother_expend_bill}"><i class="icon-cogs"></i> 其他收入</a></li>
+                    <li><a th:href="@{/gotoother_expend_bill}"><i class="icon-cogs"></i> 其他支出</a></li>
                     <li><a th:href="@{/gotohelp}"><i class="icon-info-sign"></i> 帮助 </a></li>
                 </ul>
 
@@ -83,15 +83,17 @@
 
                         <div class="slate">
 
-                            <form class="form-inline" action="/gotobonus_bill">
+                            <form class="form-inline" action="/gotoother_expend_bill">
                                 <input type="text" class="input-large" name="search" placeholder="请输入关键字进行检索">
 
                                 <select th:name="select">
-                                    <option th:value="bonus_expendDate">日期</option>
-                                    <option th:value="bonus_expendAim">分红目标</option>
-                                    <option th:value="bonus_transactor">经办人</option>
+                                    <option th:value="Date">日期</option>
+                                    <option th:value="Man">消费人</option>
+                                    <option th:value="Transactor">经办人</option>
+                                    <option th:value="Keyword">关键字</option>
                                 </select>
                                 <button type="submit" class="btn btn-primary">查找</button>
+                                <p style="color: red" th:text="${msg1}" th:if="${not #strings.isEmpty(msg1)}"></p>
                             </form>
 
                         </div>
@@ -108,9 +110,9 @@
 
                             <div class="page-header">
                                 <div class="btn-group pull-right">
-                                    <a class="btn btn-small btn-danger" th:href="@{/addbonus_bill}">添加账目</a>
+                                    <a class="btn btn-small btn-danger" th:href="@{/addother_expend_bill}">添加账目</a>
                                 </div>
-                                <h2>红利列表</h2>
+                                <h2>工资支出列表</h2>
                             </div>
 
                             <table class="orders-table table">
@@ -123,20 +125,20 @@
                                 <tbody>
                                 <tr>
                                     <td>账单编码</td>
-                                    <td>分红对象</td>
-                                    <td>分红金额</td>
+                                    <td>支出人</td>
+                                    <td>支出金额</td>
                                     <td>办理日期</td>
                                 </tr>
-                                <tr th:each="bonus:${bonuss}">
+                                <tr th:each="other_expend:${other_expends}">
                                     <!-- 加参数 -->
-                                    <td><a th:href="@{/kinderstudentinfo(stuId=${bonus.bonus_expendID})}" th:text="${bonus.bonus_expendID}"></a>
-                                    <td><a style="padding-left: -80px" th:text="${bonus.bonus_expendAim}"></a></td>
-                                    <td><a style="padding-left: -160px" th:text="${bonus.bonus_expendMoney}"></a></td>
-                                    <td><a style="padding-left: -240px" th:text="${bonus.bonus_expendDate}"></a></td>
+                                    <td><a style="padding-left: -80px" th:text="${other_expend.other_expendID}"></a>
+                                    <td><a style="padding-left: -80px" th:text="${other_expend.other_expendMan}"></a></td>
+                                    <td><a style="padding-left: -160px" th:text="${other_expend.other_expendMoney}"></a></td>
+                                    <td><a style="padding-left: -240px" th:text="${other_expend.other_expendDate}"></a></td>
                                     <td class="actions">
-                                        <a class="btn btn-small btn-primary" th:href="@{/bonusbill_massage(bonus_expendID=${bonus.bonus_expendID},search='1')}">详细信息</a>
-                                        <a class="btn btn-small btn-info" th:href="@{/bonusbill_massage(bonus_expendID=${bonus.bonus_expendID},search='2')}">修改</a>
-                                    </td>
+                                        <a class="btn btn-small btn-primary" th:href="@{/other_expend_bill_massage(other_expendID=${other_expend.other_expendID},search='1')}">详细信息</a>
+                                        <a class="btn btn-small btn-info" th:href="@{/other_expend_bill_massage(other_expendID=${other_expend.other_expendID},search='2')}">修改</a>
+                                    <!--</td>-->
                                 </tr>
                                 </tbody>
                             </table>
@@ -152,20 +154,20 @@
                         <nav aria-label="Page navigation">
                             <ul class="pagination">
                                 <!--首页 和 上一页-->
-                                <li> <a th:href="@{/gotobonus_bill}" class="btn btn-sm"> 首页 </a></li>
+                                <li> <a th:href="@{/gotoother_expend_bill}" class="btn btn-sm"> 首页 </a></li>
                                 <th:if test="${pageInfo.hasPreviousPage - 1} > 0">
                                     <li>
-                                        <a th:href="@{/gotobonus_bill(pn=${pageInfo.pageNum - 1})}" aria-label="Previous" class="btn btn-sm"  data-th-classappend="${(pageInfo.pageNum - 1) eq 0} ? 'disabled' : ''">
+                                        <a th:href="@{/gotosalary_bill(pn=${pageInfo.pageNum - 1})}" aria-label="Previous" class="btn btn-sm"  data-th-classappend="${(pageInfo.pageNum - 1) eq 0} ? 'disabled' : ''">
                                             < </a> </li>
                                 </th:if> <!--迭代生成页码--> <li>
-                                <a th:each="i:${pageInfo.navigatepageNums}" th:href="@{/gotobonus_bill(pn=${i})}" th:text="${i}" class="btn btn-sm" data-th-classappend="${(pageInfo.pageNum) eq i} ? 'btn-info' : ''">
+                                <a th:each="i:${pageInfo.navigatepageNums}" th:href="@{/gotoother_expend_bill(pn=${i})}" th:text="${i}" class="btn btn-sm" data-th-classappend="${(pageInfo.pageNum) eq i} ? 'btn-info' : ''">
                                 </a> </li>
                                 <!--下一页 和 末页--> <th:if test="${pageInfo.hasNextPage }">
-                                <li> <a aria-label="Next" class="btn btn-sm" th:href="@{/gotobonus_bill(pn=${pageInfo.pageNum + 1})}" data-th-classappend="${(pageInfo.pageNum) eq (pageInfo.pages)} ? 'disabled' : ''">
+                                <li> <a aria-label="Next" class="btn btn-sm" th:href="@{/gotoother_expend_bill(pn=${pageInfo.pageNum + 1})}" data-th-classappend="${(pageInfo.pageNum) eq (pageInfo.pages)} ? 'disabled' : ''">
                                     > </a> </li>
                             </th:if>
 
-                                <li> <a th:href="@{/gotobonus_bill(pn=${pageInfo.pages})}" class="btn btn-sm"> 末页 </a>
+                                <li> <a th:href="@{/gotoother_expend_bill(pn=${pageInfo.pages})}" class="btn btn-sm"> 末页 </a>
                                 </li>
                             </ul>
                         </nav>

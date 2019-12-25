@@ -82,57 +82,61 @@
                     <div id="sss" class="slate">
 
                         <div class="page-header">
-                            <h2>新增收款记录</h2>
+                            <h2>详细记录</h2>
                         </div>
 
-                        <form class="form-horizontal" action="/addbonus_billAction">
+                        <form class="form-horizontal" action="/addother_expend_bill">
                             <fieldset>
 
                                 <div class="control-group">
-                                    <label class="control-label" for="bonus_expendAim">分红目标</label>
+                                    <label class="control-label">记录ID</label>
                                     <div class="controls">
-                                        <input class="input-xlarge focused" name="bonus_expendAim" type="text" id="bonus_expendAim"/>
+                                        <span class="input-xlarge uneditable-input" th:text="${other_expend.other_expendID}">记录ID</span>
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label" for="bonus_expendMoney">分红金额</label>
+                                    <label class="control-label">支出金额</label>
                                     <div class="controls">
-                                        <input class="input-xlarge focused" name="bonus_expendMoney" type="text" id="bonus_expendMoney" />
+                                        <span class="input-xlarge uneditable-input" th:text="${other_expend.other_expendMoney}">支出金额</span>
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label">分红日期</label>
+                                    <label class="control-label">支出人</label>
                                     <div class="controls">
-                                        <input class="input-xlarge focused" name="bonus_expendDate" type="date" />
+                                        <span class="input-xlarge uneditable-input" th:text="${other_expend.other_expendMan}">支出人</span>
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label" for="bonus_transactor">办理人</label>
+                                    <label class="control-label">支出日期</label>
                                     <div class="controls">
-                                        <input class="input-xlarge focused" type="text" name="bonus_transactor" id="bonus_transactor">
+                                        <span class="input-xlarge uneditable-input" th:text="${other_expend.other_expendDate}">支出日期</span>
                                     </div>
-                                    <!--<div style="padding-top:30px; padding-left: 150px">-->
-                                    <!--<p style="color: red" th:text="${info}" th:if="${not #strings.isEmpty(info)}"></p>-->
-                                    <!--</div>-->
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label" for="bonus_expendRemark">备注</label>
+                                    <label class="control-label">经办人</label>
                                     <div class="controls">
-                                        <input class="input-xlarge focused" name="bonus_expendRemark" type="text" id="bonus_expendRemark">
+                                        <span class="input-xlarge uneditable-input" th:text="${other_expend.expend_transactor}">经办人</span>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">备注</label>
+                                    <div class="controls">
+                                        <span class="input-xlarge uneditable-input" th:text="${other_expend.other_expendRemark}">备注</span>
                                     </div>
                                 </div>
 
-
-                                <p style="color: red" th:text="${msg1}" th:if="${not #strings.isEmpty(msg1)}"></p>
-                                <p style="color: red" th:text="${msg2}" th:if="${not #strings.isEmpty(msg2)}"></p>
-                                <p style="color: red" th:text="${msg3}" th:if="${not #strings.isEmpty(msg3)}"></p>
-                                <p style="color: red" th:text="${msg4}" th:if="${not #strings.isEmpty(msg4)}"></p>
+                                <div class="control-group">
+                                    <label class="control-label">关键字</label>
+                                    <div class="controls">
+                                        <span class="input-xlarge uneditable-input" th:text="${other_expend.other_keyword}">关键字</span>
+                                    </div>
+                                </div>
                             </fieldset>
                             <div class="span10 " style="padding-left: 650px">
 
-                                <button type="submit" class="btn btn-info" >添加</button>
+                                <button type="submit" class="btn btn-info" >添加账单</button>
                                 <!--onclick="clearinput();"-->
-                                <button type="reset" class="btn btn-success" >清空</button>
+                                <!--<button type="reset" class="btn btn-success" >清空</button>-->
                             </div>
                         </form>
 
