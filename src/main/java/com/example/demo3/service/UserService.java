@@ -1,6 +1,10 @@
 package com.example.demo3.service;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.example.demo3.entry.User;
+
+import java.util.Map;
 
 public interface UserService {
 
@@ -32,5 +36,11 @@ public interface UserService {
      * @return
      */
     boolean deleteUser(int id);
+
+    /**
+     * 获取所有后台数据
+     * @return
+     */
+    Map getAllDate();
 
 }

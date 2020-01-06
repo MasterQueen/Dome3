@@ -4,7 +4,9 @@ import com.example.demo3.entry.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * User数据操作
@@ -31,5 +33,7 @@ public interface UserMapper {
      * @return
      */
    int insterUser(User user);
+
+   HashMap getAllData();
 
 }

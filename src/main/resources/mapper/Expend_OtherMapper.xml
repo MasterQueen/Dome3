@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo3.mapper.Expend_OtherMapper">
+
+
+    <sql id="Base_ALL">
+       other_expendID,other_expendMoney,other_expendMan,other_expendDate,expend_transactor,other_expendRemark,other_keyword
+    </sql>
+
+    <!--<select id="getExpend_Other_Bill" resultType="com.example.demo3.entry.expend.Expend_Other">-->
+
+        <!--SELECT-->
+        <!--<include refid="Base_ALL"/>-->
+        <!--FROM expend_other-->
+        <!--ORDER by other_expendID DESC-->
+    <!--</select>-->
+
+    <select id="getAllExpend_Other_Bill" resultType="com.example.demo3.entry.expend.Expend_Other">
+
+        SELECT
+        <include refid="Base_ALL"/>
+        FROM expend_other
+        ORDER by other_expendID DESC
+    </select>
+
+
+    <select id="getExpend_Other_BillByID" resultType="com.example.demo3.entry.expend.Expend_Other">
+
+        SELECT
+        <include refid="Base_ALL"/>
+        FROM expend_other
+        WHERE  other_expendID = #{other_expendID}
+    </select>
+
+
+    <select id="getExpend_Other_Bill" resultType="com.example.demo3.entry.expend.Expend_Other" parameterType="java.util.HashMap">
+        SELECT
+        <include refid="Base_ALL"/>
+
+        FROM expend_other
+
+        <trim prefix="where" prefixOverrides="and">
+            <choose>
+
+
+                <when test="other_expendDate!=null and other_expendDate !=''">
+                    AND other_expendDate = #{other_expendDate}
+                </when>
+
+                <when test="other_expendMan!=null and other_expendMan!=''">
+                    AND other_expendMan = #{other_expendMan}
+                </when>
+
+                <when test="expend_transactor!=null and expend_transactor!=''">
+
+                    AND  expend_transactor = #{expend_transactor}
+                </when>
+
+                 <when test="other_keyword!=null and other_keyword !=''">
+
+                     AND other_keyword like CONCAT ('%',#{other_keyword},'%')
+                 </when>
+
+            </choose>
+        </trim>
+
+    </select>
+
+    <insert id="insertExpend_Other_Bill" useGeneratedKeys="true" keyProperty="other_expendID"
+            keyColumn="other_expendID" parameterType="com.example.demo3.entry.expend.Expend_Other">
+        INSERT  INTO
+        expend_other (other_expendMoney, other_expendMan, other_expendDate, expend_transactor, other_expendRemark, other_keyword)
+        VALUES
+        (#{other_expendMoney},#{other_expendMan},#{other_expendDate},#{expend_transactor},#{other_expendRemark},#{other_keyword})
+
+    </insert>
+
+    <update id="updateExpend_Other_BillByID" parameterType="com.example.demo3.entry.expend.Expend_Other">
+        UPDATE
+        expend_other
+        SET
+        other_expendDate = #{other_expendDate},
+        other_expendMoney = #{other_expendMoney},
+        other_expendMan = #{other_expendMan},
+        expend_transactor = #{expend_transactor},
+        other_expendRemark = #{other_expendRemark},
+        other_keyword = #{other_keyword}
+        WHERE
+        other_expendID= #{other_expendID}
+    </update>
+
+
+
+</mapper>

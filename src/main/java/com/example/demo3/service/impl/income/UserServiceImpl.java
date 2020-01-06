@@ -1,11 +1,16 @@
 package com.example.demo3.service.impl.income;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.example.demo3.entry.User;
 import com.example.demo3.mapper.UserMapper;
 import com.example.demo3.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -35,4 +40,10 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+
+    @Override
+    public Map getAllDate() {
+
+        return userMapper.getAllData();
+    }
 }

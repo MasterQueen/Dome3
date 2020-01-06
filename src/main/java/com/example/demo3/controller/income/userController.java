@@ -1,10 +1,12 @@
 package com.example.demo3.controller.income;
 
 
+import com.alibaba.fastjson.JSONArray;
 import com.example.demo3.entry.User;
 import com.example.demo3.service.impl.income.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,7 +45,7 @@ public class userController  {
     }
 
     @RequestMapping(value = "/userlogin", method = {RequestMethod.POST})
-    public String userLogin(Map<String,Object> map, @RequestParam String idp,@RequestParam String passwordp, HttpServletRequest request, HttpSession session){
+    public String userLogin(Model model,Map<String, Object> map, @RequestParam String idp, @RequestParam String passwordp, HttpServletRequest request, HttpSession session){
 
 
         int id = Integer.parseInt(idp);
@@ -58,10 +60,20 @@ public class userController  {
 
         }else if(user.getUserPassword().equals(passwordp)){
 
-
             session.setAttribute("user",user);
 
-            return "/main";
+            Map result = userServiceimpl.getAllDate();
+            //JSONArray expend_other_all = ;
+            model.addAttribute("expend_other_all",result.get("expend_other_all"));
+            model.addAttribute("bonus_all",result.get("bonus_all"));
+            model.addAttribute("salary_all",result.get("salary_all"));
+
+
+            model.addAttribute("income_other_all",result.get("income_other_all"));
+            model.addAttribute("sponsor_all",result.get("sponsor_all"));
+            model.addAttribute("student_all",result.get("student_all"));
+
+            return "/main.html";
 
         }else{
 
@@ -80,4 +92,7 @@ public class userController  {
 //
 //        return null;
 //    }
+
+
+
 }

@@ -48,6 +48,7 @@ WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
 
+        registry.addViewController("/bills_overview.html").setViewName("bills_overview");
         registry.addViewController("/").setViewName("login");
         registry.addViewController("/login.html").setViewName("login");
         registry.addViewController("/main.html").setViewName("main");
@@ -56,6 +57,7 @@ WebMvcConfig implements WebMvcConfigurer {
         registry.addViewController("income/addstudent_billaction.html").setViewName("addstudent_billaction");
         registry.addViewController("income/studentbill_massage.html").setViewName("studentbill_massage");
         registry.addViewController("income/updatestudent_bill.html").setViewName("updatestudent_bill");
+
 
 
         registry.addViewController("/expend_bill.html").setViewName("expend_bill");

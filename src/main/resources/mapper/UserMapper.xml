@@ -18,4 +18,11 @@
         ID=#{id}
     </select>
 
+    <select id="getAllData" resultType="java.util.HashMap">
+        SELECT sum(b.bonus_expendMoney)as bonus_all,sum(ex.other_expendMoney)as expend_other_all,
+               sum(inc.other_payMoney)as income_other_all,sum(sa.salary_expendMoney)as salary_all,
+               sum(sp.sponsor_payMoney)as sponsor_all,sum(st.payMoney)as student_all
+        FROM  bonus b ,expend_other ex,income_other inc ,salary sa,sponsor sp,student st
+    </select>
+
 </mapper>

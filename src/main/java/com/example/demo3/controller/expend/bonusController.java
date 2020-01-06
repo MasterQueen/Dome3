@@ -37,34 +37,19 @@ public class bonusController {
      */
     @RequestMapping(value = "gotobonus_bill", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView BonusIndex(@RequestParam(required = false, defaultValue = "1", value = "pn") Integer pn, Model model, HttpServletRequest request) {
-
-
         PageHelper.startPage(pn, 10);
-
         //获取前端接收的查询条件
         String search = request.getParameter("search");
-
-
         //如果界面没有传入search的值  则搜索全部
-
-
         if (search == null || search.equals("")) {
-
             List<Bonus> bonusList = bonus_bill_service.getAllBonus();
             model.addAttribute("bonuss", bonusList);
-
             PageInfo<Bonus> pageInfo = new PageInfo<>(bonusList, 5);
-
             return new ModelAndView("expend/bonus_bill.html", "pageInfo", pageInfo);
-
         } else {
-
             //前端获取到查询条件，根据查询条件进行查询
             Bonus bonus = new Bonus();
-
-
             String  type = request.getParameter("select");
-
             if (type.equals("bonus_expendDate"))
             {
                 bonus.setBonus_expendDate(search);
@@ -76,18 +61,12 @@ public class bonusController {
             {
                 bonus.setBonus_transactor(search);
             }
-
             List<Bonus> bonusList = bonus_bill_service.getBonus(bonus);
-
             model.addAttribute("bonuss", bonusList);
-
             PageInfo<Bonus> pageInfo = new PageInfo<>(bonusList, 5);
-
             return new ModelAndView("expend/bonus_bill.html", "pageInfo", pageInfo);
         }
-
     }
-
     /**
      * 2019/12/4
      * LIBIN
@@ -104,44 +83,32 @@ public class bonusController {
           String  bonus_expendAim = httpServletRequest.getParameter("bonus_expendAim");
           String  bonus_expendRemark = httpServletRequest.getParameter("bonus_expendRemark");
           String  bonus_transactor = httpServletRequest.getParameter("bonus_transactor");
-
           if (bonus_expendAim.equals("")||bonus_expendDate.equals("")||bonus_expendMoney_String.equals("")||bonus_expendRemark.equals("")||bonus_transactor.equals(""))
           {
               model.addAttribute("msg1","请输入所有信息");
-
               return "expend/addbonus_bill.html";
           }
-
           if (bonus_expendRemark.length()>20)
           {
               model.addAttribute("msg2","备注信息不能超过20字");
-
               return "expend/addbonus_bill.html";
           }
-
           Bonus bonus = new Bonus();
           bonus.setBonus_expendAim(bonus_expendAim);
           bonus.setBonus_expendDate(bonus_expendDate);
           bonus.setBonus_expendMoney(Integer.valueOf(bonus_expendMoney_String));
           bonus.setBonus_expendRemark(bonus_expendRemark);
           bonus.setBonus_transactor(bonus_transactor);
-
           int result = bonus_bill_service.insertBonus(bonus);
-
           if (result>0)
           {
               model.addAttribute("msg3","添加成功");
-
               return "expend/addbonus_bill.html";
           }else {
-
               model.addAttribute("msg4","添加失败");
               return "expend/addbonus_bill.html";
           }
-
-
       }
-
 
     /**
      * 2019/12/4
@@ -171,13 +138,10 @@ public class bonusController {
               return "expend/updatebonus_bill";
           }
 
-
       }
-
       @RequestMapping(value = "updatebonus_massage" ,method =RequestMethod.GET)
       public String updateBonus_bill(Model model ,HttpServletRequest httpServletRequest)
       {
-
           String  bonus_expendMoney_String = httpServletRequest.getParameter("bonus_expendMoney");
           String  bonus_expendDate = httpServletRequest.getParameter("bonus_expendDate");
           String  bonus_expendAim = httpServletRequest.getParameter("bonus_expendAim");
