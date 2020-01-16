@@ -40,7 +40,7 @@
 
 					<!-- 利用KinderController里的goto***()方法跳转 -->
 
-					<li><a href="/main.html"><i class="icon-home"></i> 账目总计 </a></li>
+					<li><a href="/gotomain"><i class="icon-home"></i> 账目总计 </a></li>
 					<li><a href="/gotoincome_bill"><i class="icon-group"></i> 收入账单 </a></li>
 					<li><a href="/gotobonus_bill"><i class="icon-cogs"></i> 支出账单 </a></li>
 					<li><a href="/gotouser_massage"><i class="icon-cogs"></i> 用户信息</a></li>
@@ -97,7 +97,7 @@
 
 					var salary_all = [[${salary_all}]];
 
-					var dataArr1 = [ [expend_other_all,"#C630C8","其他支出"],[bonus_all,"#2dc6c8","红利支出"], [salary_all,"#b6a2dd", "工资支出"]];
+					var dataArr1 = [ [expend_other_all,"#7017C8","其他支出"],[bonus_all,"#656AC8","红利支出"], [salary_all,"#279BDD", "工资支出"]];
 					// 声明所需变量
 					var canvas1,ctx1;
 					// 图表属性
@@ -121,10 +121,10 @@
 					if(canvas1 && canvas1.getContext){
 						ctx1 = canvas1.getContext("2d");
 					}
-					initChart();
+					initChart1();
 
 					// 图表初始化
-					function initChart(){
+					function initChart1(){
 						// 图表信息
 						cMargin1 = 20;
 						cSpace1 = 40;
@@ -171,27 +171,27 @@
 						textMoveDis1 = 200; //文字运动开始的间距
 					}
 
-					//  drawMarkers();
+					  //drawMarkers1();
 					//绘制比例图及文字
-					function drawMarkers(){
+					function drawMarkers1(){
 						ctx1.textAlign="left";
 						for (var i = 0; i < dataArr1.length; i++){
 							//绘制比例图及文字
 							//ctx1.fillStyle = dataArr1[i][1];
-							ctx1.fillRect(posX1, posY1 + 40 * i, tWidth1, tHeight1);
+							//ctx1.fillRect(posX1, posY1 + 40 * i, tWidth1, tHeight1);
 							ctx1.moveTo(posX1, posY1 + 40 * i);
 							ctx1.font = 'normal 20px 微软雅黑';    //斜体 30像素 微软雅黑字体
-							ctx1.fillStyle = dataArr1[i][1]; //"#000000";
+							//ctx1.fillStyle = dataArr1[i][1]; //"#000000";
 							var percent = dataArr1[i][2] + "：" + dataArr1[i][0] ;
 							//	var percent = dataArr1[i][2] + "：" + parseInt(100 * new_data_arr[i]) + "%";
 
-							ctx1.fillText(percent, textX1, textY1 + 40 * i);
+							//ctx1.fillText(percent, textX1, textY1 + 40 * i);
 						}
 					};
 
 					//绘制动画
-					pieDraw();
-					function pieDraw(mouseMove1){
+					pieDraw1();
+					function pieDraw1(mouseMove1){
 
 						for (var n = 0; n < dataArr1.length; n++){
 							ctx1.fillStyle = ctx1.strokeStyle = dataArr1[n][1];
@@ -271,14 +271,14 @@
 							setTimeout(function(){
 								//ctx1.clearRect(-canvas1.width,-canvas1.width,canvas1.width*2, canvas1.height*2);
 								ctx1.clearRect(-canvas1.width, -canvas1.height,canvas1.width*2, canvas1.height*2);
-								drawMarkers();
-								pieDraw();
+								drawMarkers1();
+								pieDraw1();
 							}, speed1*=1.085);
 						}
 					}
 
 					//监听鼠标移动
-					var mouseTimer = null;
+					var mouseTimer1 = null;
 					canvas1.addEventListener("mousemove",function(e){
 						e = e || window.event;
 						if( e.offsetX || e.offsetX==0 ){
@@ -289,11 +289,11 @@
 							mousePosition1.y = e.layerY;
 						}
 
-						clearTimeout(mouseTimer);
-						mouseTimer = setTimeout(function(){
+						clearTimeout(mouseTimer1);
+						mouseTimer1 = setTimeout(function(){
 							ctx1.clearRect(0,0,canvas1.width, canvas1.height);
-							drawMarkers();
-							pieDraw(true);
+							drawMarkers1();
+							pieDraw1(true);
 						},10);
 					});
 
@@ -303,7 +303,7 @@
 
 			</div>
 
-			<div  th:height="350" th:width="450" style="margin:20px;float: left">
+			<div  th:height="350" th:width="450" style="margin:20px;float: right">
 					<canvas id="chart2"> 你的浏览器不支持HTML5 canvas </canvas>
 
 					<script  th:inline="javascript"  type="text/javascript">
@@ -314,7 +314,7 @@
 
 						var student_all = [[${student_all}]];
 
-						var dataArr = [ [income_other_all,"#A1C81D","其他收入"],[sponsor_all,"#C894A2","赞助收入"], [student_all,"#BC33DD", "学费收入"]];
+						var dataArr = [ [income_other_all,"#ff73cb","测试收入"],[income_other_all,"#ff6898","其他收入"],[sponsor_all,"#f56091","赞助收入"], [student_all,"#C54898", "学费收入"]];
 						// 声明所需变量
 						var canvas,ctx;
 						// 图表属性
@@ -388,21 +388,21 @@
 							textMoveDis = 200; //文字运动开始的间距
 						}
 
-						//  drawMarkers();
+						  drawMarkers();
 						//绘制比例图及文字
 						function drawMarkers(){
 							ctx.textAlign="left";
 							for (var i = 0; i < dataArr.length; i++){
 								//绘制比例图及文字
 								//ctx.fillStyle = dataArr[i][1];
-								ctx.fillRect(posX, posY + 40 * i, tWidth, tHeight);
-								ctx.moveTo(posX, posY + 40 * i);
+								//ctx.fillRect(posX, posY + 40 * i, tWidth, tHeight);
+								//ctx.moveTo(posX, posY + 40 * i);
 								ctx.font = 'normal 20px 微软雅黑';    //斜体 30像素 微软雅黑字体
-								ctx.fillStyle = dataArr[i][1]; //"#000000";
+								//ctx.fillStyle = dataArr[i][1]; //"#000000";
 								var percent = dataArr[i][2] + "：" + dataArr[i][0] ;
 								//	var percent = dataArr[i][2] + "：" + parseInt(100 * new_data_arr[i]) + "%";
 
-								ctx.fillText(percent, textX, textY + 40 * i);
+								//ctx.fillText(percent, textX, textY + 40 * i);
 							}
 						};
 
@@ -522,6 +522,10 @@
 				</div>
 
 	    </div>
+
+		<div>
+
+
 			<!--<div class="row">-->
 
 				<!--<div class="span10 footer">-->
@@ -538,7 +542,7 @@
 
 </div> <!-- end row -->
 
-</div> <!-- end container -->
+  <!--</div>  &lt;!&ndash; end container &ndash;&gt;-->
 
 <!-- Le javascript
 ================================================== -->

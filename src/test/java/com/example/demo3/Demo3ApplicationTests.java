@@ -17,24 +17,24 @@ import java.util.List;
 @SpringBootTest
 public class Demo3ApplicationTests {
 
-    @Test
-    public void contextLoads() {
-    }
-    @Autowired
-    UserMapper userMapper;
-    @Test
-    public void getAllDate() {
-
-       // JSONArray jsonArray = (JSONArray)JSONArray.toJSON(userMapper.getAllData());
-
-        HashMap map =  userMapper.getAllData();
-        JSONArray jsonArray = new JSONArray();
-        jsonArray.add(map);
-        System.out.println(map);
-
-        System.out.println("***************************************");
-        System.out.println(jsonArray.toString());
-       // System.out.println(jsonArray);
-
-    }
+//    @Test
+//    public void contextLoads() {
+//    }
+//    @Autowired
+//    UserMapper userMapper;
+//    @Test
+//    public void getAllDate() {
+//
+//       // JSONArray jsonArray = (JSONArray)JSONArray.toJSON(userMapper.getAllData());
+//
+//        HashMap map =  userMapper.getAllData();
+//        JSONArray jsonArray = new JSONArray();
+//        jsonArray.add(map);
+//        System.out.println(map);
+//
+//        System.out.println("***************************************");
+//        System.out.println(jsonArray.toString());
+//       // System.out.println(jsonArray);
+//
+//    }
 }

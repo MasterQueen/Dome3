@@ -1,7 +1,6 @@
 package com.example.demo3.controller.income;
 
 
-import com.alibaba.fastjson.JSONArray;
 import com.example.demo3.entry.User;
 import com.example.demo3.service.impl.income.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,20 @@ public class userController  {
     User user;
 
     @RequestMapping(value = "gotomain")
-    public String gotoMain(){return "/main";}
+    public String gotoMain( Model model){
+
+        Map result = userServiceimpl.getAllDate();
+        //JSONArray expend_other_all = ;
+        model.addAttribute("expend_other_all",result.get("expend_other_all"));
+        model.addAttribute("bonus_all",result.get("bonus_all"));
+        model.addAttribute("salary_all",result.get("salary_all"));
+
+        model.addAttribute("income_other_all",result.get("income_other_all"));
+        model.addAttribute("sponsor_all",result.get("sponsor_all"));
+        model.addAttribute("student_all",result.get("student_all"));
+
+        return "main";
+    }
 
     @RequestMapping(value = "gotoincome_bill")
     public String gotoIncom_Bill(){return "/income_bill";}
@@ -73,7 +85,7 @@ public class userController  {
             model.addAttribute("sponsor_all",result.get("sponsor_all"));
             model.addAttribute("student_all",result.get("student_all"));
 
-            return "/main.html";
+            return "main";
 
         }else{
 

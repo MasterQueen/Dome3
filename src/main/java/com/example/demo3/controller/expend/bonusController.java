@@ -151,7 +151,6 @@ public class bonusController {
           if (bonus_expendAim.equals("")||bonus_expendDate.equals("")||bonus_expendMoney_String.equals("")||bonus_expendRemark.equals("")||bonus_transactor.equals(""))
           {
               model.addAttribute("msg1","请输入所有信息");
-
               return "expend/updatebonus_bill.html";
           }
           Bonus bonus =  new Bonus();
@@ -162,10 +161,8 @@ public class bonusController {
           bonus.setBonus_expendRemark(bonus_expendRemark);
           bonus.setBonus_expendMoney(Integer.valueOf(bonus_expendMoney_String));
           int result  = bonus_bill_service.updateBonus(bonus);
-
           if (result>0)
           {
-
               model.addAttribute("msg1","修改成功");
               model.addAttribute("bonus",bonus);
               return "expend/updatebonus_bill";
@@ -174,8 +171,6 @@ public class bonusController {
               model.addAttribute("msg2","修改失败");
               return "expend/updatebonus_bill";
           }
-
-
 
       }
 
